@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WarGame.Controllers
 {
-    public class WelcomeController : Controller
+    public class MapController : Controller
     {
         public ActionResult Index()
         {
