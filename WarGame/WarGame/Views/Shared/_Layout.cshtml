@@ -3,17 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>War of Thrones</title>
+    <title>Warteros</title>
     @Styles.Render("~/Content/styles")
 </head>
 <body>   
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Grupo Cinco Tons de Cinza</p>
-        </footer>
     </div>
-    @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bundles/scripts")  
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
