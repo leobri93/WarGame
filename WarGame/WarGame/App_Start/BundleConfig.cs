@@ -13,14 +13,19 @@ namespace WarGame
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                      "~/Scripts/jquery-{version}.js",
                      "~/Scripts/bootstrap.js",
                      "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/westeros-map").Include(
+                    "~/Scripts/westeros-map-view.js"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/styles").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Styles/bootstrap.css",
+                      "~/Content/Styles/site.css"));
+
         }
     }
 }

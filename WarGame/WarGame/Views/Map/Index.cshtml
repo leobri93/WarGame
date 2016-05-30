@@ -1,6 +1,10 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿<div class="row">
+    <div class="col-md-12">
+        <canvas id="westeros-map" width="1200" height="600"></canvas>
+    </div>
+</div>
 
-<h2>MAPÃO GAME OF THRONES</h2>
+<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/westeros-map")
+}
