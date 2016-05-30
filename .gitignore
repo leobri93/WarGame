@@ -235,3 +235,4 @@ $RECYCLE.BIN/
 
 # Deploy Directory
 /Deploy
+WarGame/.vs/config/applicationhost.config

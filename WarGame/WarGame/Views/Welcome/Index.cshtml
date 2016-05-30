@@ -1,35 +1,99 @@
-﻿<div class="row">
-    <div class="col-md-12 text-center">
-        <h1>Bem-vindo ao Warteros</h1>
+﻿@{
+    
+    Layout = null;
+}
+
+@Styles.Render("~/Content/styles")
+@Scripts.Render("~/bundles/modernizr")
+
+@Scripts.Render("~/bundles/scripts")
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;margin-top: 30px;">
+            <h1>Bem-vindo ao Warteros</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="sel1">Nome:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input id="playerName" type="text" class="form-control" placeholder="Digite seu nome..." aria-describedby="nameField"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:15px">
+                    <div class="col-md-2">
+                        <label for="selFamilias">Selecione a familia:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <select class="form-control" id="selFamily">
+                                <option>Targaryen</option>
+                                <option>Lannister</option>
+                                <option>Stark</option>
+                                <option>Baratheon</option>
+                                <option>Greyjoy</option>
+                                <option>Tyrell</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center">
+                    <div id="button">
+                        <button class="btn btn-default" onclick="javascript: goToMapsPage();">Jogar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="well well-sm">
-        <form class="form-inline" method="post">
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="Digite seu nome...">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <select class="form-control" id="selFamilias">
-                        <option>Targaryen</option>
-                        <option>Lannister</option>
-                        <option>Stark</option>
-                        <option>Baratheon</option>
-                        <option>Greyjoy</option>
-                        <option>Tyrell</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <a class="btn btn-info" href="@Url.Action("Index", "Map")">
-                        Jogar
-                    </a> 
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+
+@*Begin of Scripts*@
+<script>
+    function initializePage() {
+
+    }
+
+    function goToMapsPage() {
+        window.location.href = "@Url.Action("Index", "Map")";
+    }
+
+    function doSubmit() {
+        var name = $('#playerName').val();
+        var family = $('#selFamily').val();
+        
+        $.ajax({
+            url: '@Url.Action("Index", "Map")',
+            data: JSON.stringify({ name: name, family: family }),
+            type: "post",
+            contentType: "application/json",
+            cache: false,
+            dataType: 'json',
+            timeout: 60 * 5 * 1e3,
+            success: function (result) {
+                if (result.Success) {
+                    return true;
+                }
+                if (result.Error) {
+                    
+
+                } else {
+
+                }
+
+            },
+            error: function (err) {
+                
+            }
+        })
+    }
+
+    
+    $(document).ready(function () {
+        initializePage();
+    });
+</script>
