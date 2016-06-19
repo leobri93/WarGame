@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WarGame.Models;
 
 namespace WarGame.Helper
@@ -7,405 +6,197 @@ namespace WarGame.Helper
     public static class Westeros
     {
 
-        public static IList<RegionViewModel> Map()
+        public static List<RegionViewModel> Map()
         {
             var regions = new List<RegionViewModel>();
-            var url = "Content/Images/Westeros/";
+            var kingdom = Kingdom.Instance;
+            var region = Region.Instance(kingdom);
 
-            AddWesterlands(regions, url+ "The_Westerlands/");
-            AddReach(regions, url + "The_Reach/");
-            AddStormlands(regions, url + "The_Stormlands/");
-            AddCrowlands(regions, url + "The_Crownlands/");
-            AddRiverlands(regions, url + "The_Riverlands/");
-            AddIronIslands(regions, url + "The_Iron_Islands/");
-            AddArryn(regions, url + "Vale_of_Arryn/");
-            AddNorth(regions, url + "The_North/");
-
+            AddFrontiers(region);
+            AddRegions(regions, region);
+           
             return regions;
         }
 
-        private static void AddWesterlands(List<RegionViewModel> regions, string url)
+        private static void AddFrontiers(Region region)
         {
-            regions.Add(new RegionViewModel
-            {
-                Id = 1,
-                Name = "Casterly Rock",
-                Troops = 1,
-                Src = url + "casterly_rock.png",
-               
-                X = 350,
-                Y = 53
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 2,
-                Name = "Cornfield",
-                Troops = 1,
-                Src = url + "cornfield.png",
-                X = 255,
-                Y = 59
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 3,
-                Name = "Golden Tooth",
-                Troops = 1,
-                Src = url + "golden_tooth.png",
-                X = 404,
-                Y = 136
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 4,
-                Name = "Lannisvort",
-                Troops = 1,
-                Src = url + "lannisvort.png",
-                X = 327,
-                Y = 69
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 5,
-                Name = "Stone Scut",
-                Troops = 1,
-                Src = url + "stone_scut.png",
-                X = 338,
-                Y = 205
-            });
+            region.Sanspear.Frontiers(new List<RegionViewModel>
+                    { region.Sandstone });
+
+            region.Sandstone.Frontiers(new List<RegionViewModel> 
+                    { region.Sanspear, region.RedMountains });
+
+            region.RedMountains.Frontiers(new List<RegionViewModel>
+                    { region.Sandstone, region.Highgarden, region.Oldtown, region.DornishNarchis });
+
+            region.Oldtown.Frontiers(new List<RegionViewModel>
+                    { region.RedMountains, region.OldNak, region.Highgarden });
+
+            region.Highgarden.Frontiers(new List<RegionViewModel>
+                    { region.RedMountains, region.OldNak, region.Oldtown,
+                     region.BlackWaterRush, region.DornishNarchis });
+
+            region.BlackWaterRush.Frontiers(new List<RegionViewModel>
+                    { region.Highgarden, region.OldNak, region.SilberHill, region.DornishNarchis });
+
+            region.OldNak.Frontiers(new List<RegionViewModel>
+                    { region.Oldtown, region.Highgarden, region.BlackWaterRush, region.SilberHill,
+                     region.Cornfield, region.Lannisvort });
+
+            region.SilberHill.Frontiers(new List<RegionViewModel>
+                    { region.BlackWaterRush, region.OldNak, region.DornishNarchis, region.Kingswood,
+                     region.KingsLanding, region.StoneScut, region.CasterlyRock, region.Lannisvort });
+
+            region.DornishNarchis.Frontiers(new List<RegionViewModel>
+                    { region.RedMountains, region.Highgarden, region.BlackWaterRush, region.SilberHill,
+                     region.Kingswood, region.StormsEnd, region.Rainwood });
+
+            region.Rainwood.Frontiers(new List<RegionViewModel>
+                    { region.DornishNarchis, region.Tarth, region.StormsEnd });
+
+            region.StormsEnd.Frontiers(new List<RegionViewModel>
+                    { region.DornishNarchis, region.Tarth, region.Rainwood, region.Kingswood });
+
+            region.Tarth.Frontiers(new List<RegionViewModel>
+                    { region.StormsEnd, region.Rainwood });
+
+            region.Kingswood.Frontiers(new List<RegionViewModel>
+                   { region.DornishNarchis, region.StormsEnd, region.KingsLanding, region.SilberHill });
+
+            region.KingsLanding.Frontiers(new List<RegionViewModel>
+                   { region.Kingswood, region.StoneScut, region.Harrenhal, region.SilberHill,
+                     region.Riberrun, region.CrackclawPoint});
+
+            region.CrackclawPoint.Frontiers(new List<RegionViewModel>
+                   { region.KingsLanding, region.Harrenhal, region.TheTwins, region.SaltPans });
+
+            region.Cornfield.Frontiers(new List<RegionViewModel>
+                   { region.OldNak, region.Lannisvort });
+
+            region.Lannisvort.Frontiers(new List<RegionViewModel>
+                   { region.Cornfield, region.CasterlyRock, region.OldNak, region.SilberHill });
+
+            region.CasterlyRock.Frontiers(new List<RegionViewModel>
+                   { region.Lannisvort, region.TheCrag, region.GoldenTooth, region.SilberHill,
+                     region.StoneScut });
+
+            region.GoldenTooth.Frontiers(new List<RegionViewModel>
+                   { region.CasterlyRock, region.TheCrag, region.Riberrun, region.StoneScut });
+
+            region.StoneScut.Frontiers(new List<RegionViewModel>
+                   { region.SilberHill, region.CasterlyRock, region.GoldenTooth, region.Riberrun,
+                     region.KingsLanding });
+
+            region.TheCrag.Frontiers(new List<RegionViewModel>
+                   { region.CasterlyRock, region.GoldenTooth, region.Riberrun,
+                     region.Pyke });
+
+            region.Riberrun.Frontiers(new List<RegionViewModel>
+                   { region.TheCrag, region.GoldenTooth, region.StoneScut, region.TheTwins,
+                     region.Harrenhal, region.KingsLanding });
+
+            region.Harrenhal.Frontiers(new List<RegionViewModel>
+                   { region.Riberrun, region.CrackclawPoint, region.TheTwins, region.KingsLanding });
+
+            region.TheTwins.Frontiers(new List<RegionViewModel>
+                    { region.Riberrun, region.Harrenhal, region.TheNeck, region.WestBale,
+                      region.TheMountainsOfTheMoon, region.SaltPans, region.CrackclawPoint, region.Harlaw});
+
+            region.Pyke.Frontiers(new List<RegionViewModel>
+                    { region.TheCrag, region.Harlaw });
+
+            region.WestBale.Frontiers(new List<RegionViewModel>
+                    { region.TheFingers, region.TheNeck, region.TheTwins, region.TheMountainsOfTheMoon });
+
+            region.TheFingers.Frontiers(new List<RegionViewModel>
+                    { region.WestBale, region.TheEyrie, region.TheMountainsOfTheMoon });
+
+            region.TheMountainsOfTheMoon.Frontiers(new List<RegionViewModel>
+                    { region.TheTwins, region.WestBale, region.TheFingers, region.TheEyrie, region.SaltPans});
+
+            region.TheEyrie.Frontiers(new List<RegionViewModel>
+                    { region.TheMountainsOfTheMoon, region.TheFingers, region.SaltPans});
+
+            region.SaltPans.Frontiers(new List<RegionViewModel>
+                    { region.TheMountainsOfTheMoon, region.TheEyrie, region.TheTwins, region.Gulltown,
+                      region.CrackclawPoint });
+
+            region.CapeKrake.Frontiers(new List<RegionViewModel>
+                   { region.Harlaw, region.TheNeck });
+
+            region.TheNeck.Frontiers(new List<RegionViewModel>
+                   { region.TheTwins, region.CapeKrake, region.Barrowlands, region.WhiteHabor, region.Harlaw });
+
+            region.WhiteHabor.Frontiers(new List<RegionViewModel>
+                  { region.TheNeck, region.TheWolfwoods, region.Barrowlands, region.Winterfell, region.WidowsWatch });
+
+            region.StoneShore.Frontiers(new List<RegionViewModel>
+                  { region.Barrowlands, region.TheWolfwoods, region.BearIsland });
+
+            region.TheWolfwoods.Frontiers(new List<RegionViewModel>
+                  { region.StoneShore, region.Barrowlands, region.BearIsland, region.Winterfell });
+
+            region.BearIsland.Frontiers(new List<RegionViewModel>
+                 { region.StoneShore, region.TheWolfwoods, region.Winterfell });
+
+            region.Winterfell.Frontiers(new List<RegionViewModel>
+                 { region.Barrowlands, region.TheWolfwoods, region.WhiteHabor, region.WidowsWatch,
+                   region.TheGreyCliffs, region.BearIsland });
+
+            region.Barrowlands.Frontiers(new List<RegionViewModel>
+                 { region.StoneShore, region.TheWolfwoods, region.WhiteHabor, region.TheNeck, region.Winterfell });
+
+            region.WidowsWatch.Frontiers(new List<RegionViewModel>
+                { region.WhiteHabor, region.Winterfell });
+
+            region.TheGreyCliffs.Frontiers(new List<RegionViewModel>
+                { region.Winterfell });
         }
 
-        private static void AddReach(List<RegionViewModel> regions, string url)
+        private static void AddRegions(List<RegionViewModel> regions, Region region) 
         {
-            regions.Add(new RegionViewModel
-            {
-                Id = 6,
-                Name = "Black Water Rush",
-                Troops = 1,
-                Src = url + "black_water_rush.png",
-                X = 215,
-                Y = 173
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 7,
-                Name = "Highgarden",
-                Troops = 1,
-                Src = url + "highgarden.png",
-                X = 150,
-                Y = 130
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 8,
-                Name = "Old Nak Tooth",
-                Troops = 1,
-                Src = url + "old_nak.png",
-                X = 200,
-                Y = 101
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 9,
-                Name = "Oldtown",
-                Troops = 1,
-                Src = url + "oldtown.png",
-                X = 106,
-                Y = 42
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 10,
-                Name = "Silber Hill",
-                Troops = 1,
-                Src = url + "silber_hill.png",
-                X = 302,
-                Y = 169
-            });
-        }
-
-        private static void AddStormlands(List<RegionViewModel> regions, string url)
-        {
-            regions.Add(new RegionViewModel
-            {
-                Id = 11,
-                Name = "Dornish Narchis",
-                Troops = 1,
-                Src = url + "dornish_narchis.png",
-                X = 179,
-                Y = 294
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 12,
-                Name = "Rainwood",
-                Troops = 1,
-                Src = url + "rainwood.png",
-                X = 160,
-                Y = 397
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 14,
-                Name = "Storms End",
-                Troops = 1,
-                Src = url + "storms_end.png",
-                X = 252,
-                Y = 427
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 15,
-                Name = "Tarth",
-                Troops = 1,
-                Src = url + "tarth.png",
-                X = 245,
-                Y = 520
-            });
-        }
-
-        private static void AddCrowlands(List<RegionViewModel> regions, string url)
-        {
-            regions.Add(new RegionViewModel
-            {
-                Id = 16,
-                Name = "Crackclaw Point",
-                Troops = 1,
-                Src = url + "crackclaw_point.png",
-                X = 398,
-                Y = 350
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 17,
-                Name = "Kings Lading",
-                Troops = 1,
-                Src = url + "kings_landing.png",
-                X = 348,
-                Y = 287
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 18,
-                Name = "Kingswood",
-                Troops = 1,
-                Src = url + "kingswood.png",
-                X = 285,
-                Y = 354
-            });           
-        }
-
-        private static void AddRiverlands(List<RegionViewModel> regions, string url)
-        {
-            regions.Add(new RegionViewModel
-            {
-                Id = 19,
-                Name = "Harrenhal",
-                Troops = 1,
-                Src = url + "harrenhal.png",
-                X = 421,
-                Y = 294
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 20,
-                Name = "Riberrun",
-                Troops = 1,
-                Src = url + "riberrun.png",
-                X = 419,
-                Y = 200
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 21,
-                Name = "The Crag",
-                Troops = 1,
-                Src = url + "the_crag.png",
-                X = 453,
-                Y = 117
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 22,
-                Name = "The Twins",
-                Troops = 1,
-                Src = url + "the_twins.png",
-                X = 470,
-                Y = 189
-            });
-        }
-
-        private static void AddIronIslands(List<RegionViewModel> regions, string url)
-        {
-            regions.Add(new RegionViewModel
-            {
-                Id = 23,
-                Name = "Harlaw",
-                Troops = 1,
-                Src = url + "harlaw.png",
-                X = 590,
-                Y = 100
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 24,
-                Name = "Pyke",
-                Troops = 1,
-                Src = url + "pyke.png",
-                X = 540,
-                Y = 60
-            });
-        }
-
-        private static void AddArryn(List<RegionViewModel> regions, string url)
-        {
-            regions.Add(new RegionViewModel
-            {
-                Id = 25,
-                Name = "Gulltown",
-                Troops = 1,
-                Src = url + "gulltown.png",
-                X = 1540,
-                Y = 160
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 26,
-                Name = "Salt Pans",
-                Troops = 1,
-                Src = url + "salt_pans.png",
-                X = 464,
-                Y = 346
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 27,
-                Name = "The Eyrie",
-                Troops = 1,
-                Src = url + "the_eyrie.png",
-                X = 529,
-                Y = 388
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 28,
-                Name = "The Fingers",
-                Troops = 1,
-                Src = url + "the_fingers.png",
-                X = 578,
-                Y = 340
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 29,
-                Name = "The Mountains of the Moon",
-                Troops = 1,
-                Src = url + "the_mountains_of_the_moon.png",
-                X = 505,
-                Y = 313
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 30,
-                Name = "West Bale",
-                Troops = 1,
-                Src = url + "west_bale.png",
-                X = 545,
-                Y = 291
-            });
-        }
-
-        private static void AddNorth(List<RegionViewModel> regions, string url)
-        {
-            regions.Add(new RegionViewModel
-            {
-                Id = 31,
-                Name = "Barrowlands",
-                Troops = 1,
-                Src = url + "barrowlands.png",
-                X = 710,
-                Y = 138
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 32,
-                Name = "Bear Island",
-                Troops = 1,
-                Src = url + "bear_island.png",
-                X = 980,
-                Y = 165
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 33,
-                Name = "Cape Krake",
-                Troops = 1,
-                Src = url + "cape_krake.png",
-                X = 627,
-                Y = 49
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 34,
-                Name = "Stone Shore",
-                Troops = 1,
-                Src = url + "stone_shore.png",
-                X = 710,
-                Y = 33
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 35,
-                Name = "The Grey Cliffs",
-                Troops = 1,
-                Src = url + "the_grey_cliffs.png",
-                X = 861,
-                Y = 419
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 36,
-                Name = "The Neck",
-                Troops = 1,
-                Src = url + "the_neck.png",
-                X = 612,
-                Y = 176
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 36,
-                Name = "The Wolfwoods",
-                Troops = 1,
-                Src = url + "the_wolfwoods.png",
-                X = 830,
-                Y = 140
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 37,
-                Name = "White Habor",
-                Troops = 1,
-                Src = url + "white_habor.png",
-                X = 688,
-                Y = 274
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 38,
-                Name = "Widows Watch",
-                Troops = 1,
-                Src = url + "widows_watch.png",
-                X = 752,
-                Y = 390
-            });
-            regions.Add(new RegionViewModel
-            {
-                Id = 39,
-                Name = "Winterfell",
-                Troops = 1,
-                Src = url + "winterfell.png",
-                X = 760,
-                Y = 182
-            });
+            regions.Add(region.CasterlyRock);
+            regions.Add(region.Cornfield);
+            regions.Add(region.GoldenTooth);
+            regions.Add(region.Lannisvort);
+            regions.Add(region.StoneScut);
+            regions.Add(region.BlackWaterRush);
+            regions.Add(region.Highgarden);
+            regions.Add(region.OldNak);
+            regions.Add(region.Oldtown);
+            regions.Add(region.SilberHill);
+            regions.Add(region.DornishNarchis);
+            regions.Add(region.Rainwood);
+            regions.Add(region.StormsEnd);
+            regions.Add(region.Tarth);
+            regions.Add(region.CrackclawPoint);
+            regions.Add(region.KingsLanding);
+            regions.Add(region.Kingswood);
+            regions.Add(region.Harrenhal);
+            regions.Add(region.Riberrun);
+            regions.Add(region.TheCrag);
+            regions.Add(region.TheTwins);
+            regions.Add(region.Harlaw);
+            regions.Add(region.Pyke);
+            regions.Add(region.Gulltown);
+            regions.Add(region.SaltPans);
+            regions.Add(region.TheEyrie);
+            regions.Add(region.TheFingers);
+            regions.Add(region.TheMountainsOfTheMoon);
+            regions.Add(region.WestBale);
+            regions.Add(region.Barrowlands);
+            regions.Add(region.BearIsland);
+            regions.Add(region.CapeKrake);
+            regions.Add(region.StoneShore);
+            regions.Add(region.TheGreyCliffs);
+            regions.Add(region.TheNeck);
+            regions.Add(region.TheWolfwoods);
+            regions.Add(region.WhiteHabor);
+            regions.Add(region.WidowsWatch);
+            regions.Add(region.Winterfell);
+            regions.Add(region.RedMountains);
+            regions.Add(region.Sandstone);
+            regions.Add(region.Sanspear);
         }
     }
 }

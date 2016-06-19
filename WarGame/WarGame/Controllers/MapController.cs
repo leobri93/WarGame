@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using WarGame.Helper;
 using WarGame.Models;
 
@@ -7,10 +8,13 @@ namespace WarGame.Controllers
     public class MapController : Controller
     {
 
+        private static readonly List<RegionViewModel> regions = Westeros.Map();
+
         [HttpGet]
         [Route("maps")]
         public ActionResult Index()
         {
+            var x = regions;
             return View();
         }
 
@@ -18,7 +22,6 @@ namespace WarGame.Controllers
         [Route("maps/regions")]
         public JsonResult Regions()
         {
-            var regions = Westeros.Map();
             return Json(regions, JsonRequestBehavior.AllowGet);
         }
     }
