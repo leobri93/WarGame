@@ -203,9 +203,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Kingdom.cs" />
+    <Compile Include="Helper\Region.cs" />
+    <Compile Include="Helper\Search.cs" />
     <Compile Include="Helper\Westeros.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KingdomViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PlayerViewModel.cs" />
     <Compile Include="Models\RegionViewModel.cs" />
@@ -213,17 +217,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\Westeros\Dorne\bonewap.png" />
-    <Content Include="Content\Images\Westeros\Dorne\princes_pass.png" />
-    <Content Include="Content\Images\Westeros\Dorne\pronwood.png" />
-    <Content Include="Content\Images\Westeros\Dorne\salt_shore.png" />
+    <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
     <Content Include="Content\Images\Westeros\Dorne\sandstone.png" />
-    <Content Include="Content\Images\Westeros\Dorne\slinreach.png" />
-    <Content Include="Content\Images\Westeros\Dorne\starfall.png" />
-    <Content Include="Content\Images\Westeros\Dorne\sunspear.png" />
-    <Content Include="Content\Images\Westeros\Dorne\teste.png" />
-    <Content Include="Content\Images\Westeros\Dorne\three_towers.png" />
-    <Content Include="Content\Images\Westeros\Dorne\uplands.png" />
+    <Content Include="Content\Images\Westeros\Dorne\sanspear.png" />
     <Content Include="Content\Images\Westeros\The_Crownlands\crackclaw_point.png" />
     <Content Include="Content\Images\Westeros\The_Crownlands\kingswood.png" />
     <Content Include="Content\Images\Westeros\The_Crownlands\kings_landing.png" />

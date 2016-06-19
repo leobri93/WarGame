@@ -14,10 +14,6 @@
         alert("Região: " + region.name + ", Tropas: " + region.troops);
     };
 
-    var regionMouseOver = function () {
-
-    };
-
     var getRegions = function () {
         return ($.ajax({
             url: "maps/regions",
@@ -49,7 +45,7 @@
     };
 
     var buildMap = function () {
-        getRegions().done(function (data) {       
+        getRegions().done(function (data) {
             data.forEach(createBitmap);
             createjs.Ticker.on("tick", stage);
         });
