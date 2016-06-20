@@ -1,6 +1,41 @@
-﻿body {
+﻿@font-face {
+    font-family: Gameofthrones;
+    src: url('../../fonts/Gameofthrones.ttf');
+}
+
+h1 {
+    font-family: Gameofthrones;
+    color:#ffffff;
+}
+
+
+header{
+        font-family: Gameofthrones;
+       
+}
+
+body {
+   
     padding-top: 50px;
     padding-bottom: 20px;
+}
+.inicio {
+    background: url('../Images/wallpaper12.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+}
+.container {
+}
+#westeros-map {
+    
+    width: 100%;
+    border:2px solid #000000;
+}
+#info-jogador {
+     background-color:darkgray;
+     border:2px solid #000000;
 }
 
 /* Set padding to keep content from hitting the edges */

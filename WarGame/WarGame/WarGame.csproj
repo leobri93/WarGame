@@ -217,6 +217,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\wallpaper12.jpg" />
     <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
     <Content Include="Content\Images\Westeros\Dorne\sandstone.png" />
     <Content Include="Content\Images\Westeros\Dorne\sanspear.png" />
@@ -272,6 +273,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\Gameofthrones.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
