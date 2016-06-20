@@ -14,7 +14,6 @@ namespace WarGame.Controllers
         [Route("maps")]
         public ActionResult Index()
         {
-            var x = regions;
             return View();
         }
 

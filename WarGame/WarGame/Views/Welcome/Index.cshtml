@@ -44,7 +44,7 @@
                 </div>
                 <div class="row" style="text-align:center">
                     <div id="button">
-                        <button class="btn btn-default" onclick="javascript: goToMapsPage();">Jogar</button>
+                        <button class="btn btn-default" onclick="javascript: doSubmit();">Jogar</button>
                     </div>
                 </div>
             </div>
@@ -59,15 +59,15 @@
     }
 
     function goToMapsPage() {
-        window.location.href = "@Url.Action("Index", "Map")";
+       
     }
 
     function doSubmit() {
         var name = $('#playerName').val();
         var family = $('#selFamily').val();
-        
+
         $.ajax({
-            url: '@Url.Action("Index", "Map")',
+            url: '@Url.Action("DoSubmit", "Welcome")',
             data: JSON.stringify({ name: name, family: family }),
             type: "post",
             contentType: "application/json",
@@ -76,23 +76,20 @@
             timeout: 60 * 5 * 1e3,
             success: function (result) {
                 if (result.Success) {
-                    return true;
-                }
-                if (result.Error) {
-                    
-
+                    var playerInfo = result.playerInfo
+                    window.location.href = "@Url.Action("Index", "Map")";
                 } else {
-
+                    window.alert("Erro ao criar jogador");
                 }
 
             },
             error: function (err) {
-                
+
             }
         })
     }
 
-    
+
     $(document).ready(function () {
         initializePage();
     });
