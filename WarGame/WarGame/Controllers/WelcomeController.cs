@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using WarGame.Models;
 
 namespace WarGame.Controllers
 {
@@ -14,12 +15,26 @@ namespace WarGame.Controllers
             return View();
         }
 
-        public ActionResult DoSubmit()
+        [HttpPost]
+        public ActionResult DoSubmit(string name, string family)
         {
+            PlayerViewModel player = new PlayerViewModel(name, family);
+
+            bool success;
+            if(player != null)
+            {
+                success = true;
+            }
+            else
+            {
+                success = false;
+            }
 
             return Content(JsonConvert.SerializeObject(new
             {
-                Success = "Feriado não foi cadastrado"
+                Success = success,
+                PlayerInfo = player
+                
             }));
         }
     }
