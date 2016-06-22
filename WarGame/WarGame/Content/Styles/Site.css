@@ -24,6 +24,18 @@ body {
 	background-position: center;
 	background-size: cover;
 }
+.container {
+}
+#westeros-map {
+    
+    width: 100%;
+    border:2px solid #000000;
+}
+#info-jogador {
+     background-color:gray;
+     border:2px solid #000000;
+
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

@@ -217,6 +217,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\Stark.png" />
     <Content Include="Content\Images\wallpaper12.jpg" />
     <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
     <Content Include="Content\Images\Westeros\Dorne\sandstone.png" />
