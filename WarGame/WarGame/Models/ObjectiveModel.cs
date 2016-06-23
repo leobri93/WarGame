@@ -9,11 +9,13 @@ namespace WarGame.Models
     {
         public int id { get; set; }
         public string description { get; set; }
+        public bool isUsed { get; set; }
 
         public ObjectiveModel (int id, string description)
         {
-            this.id        = id;
+            this.id          = id;
             this.description = description;
+            isUsed           = false;
         }
 
         public ObjectiveModel ()

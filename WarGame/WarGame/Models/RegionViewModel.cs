@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WarGame.Helper;
 
 namespace WarGame.Models
 {
@@ -32,7 +33,13 @@ namespace WarGame.Models
             this.kingdom = kingdom;
             this.x = x;
             this.y = y;
-            player = new PlayerViewModel("Computador", "Stark");
+
+            Objective obj = new Objective();
+            
+            //Raffling an objective
+            ObjectiveModel objModel = obj.RafflingObjectives();
+
+            player = new PlayerViewModel("Computador", "Stark", objModel);
             troops = 1;
         }
 

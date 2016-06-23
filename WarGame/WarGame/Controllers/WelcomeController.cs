@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using WarGame.Models;
+using WarGame.Helper;
 
 namespace WarGame.Controllers
 {
@@ -18,7 +19,11 @@ namespace WarGame.Controllers
         [HttpPost]
         public ActionResult DoSubmit(string name, string family)
         {
-            PlayerViewModel player = new PlayerViewModel(name, family);
+            Objective obj = new Objective();
+
+            ObjectiveModel objModel = obj.RafflingObjectives();
+
+            PlayerViewModel player = new PlayerViewModel(name, family, objModel);
 
             bool success;
             if(player != null)
