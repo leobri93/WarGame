@@ -219,6 +219,7 @@
   <ItemGroup>
     <Content Include="Content\Images\arvore.jpg" />
     <Content Include="Content\Images\dead.jpg" />
+    <Content Include="Content\Images\game-of-thrones-house-flags-wallpaper-3201.jpg" />
     <Content Include="Content\Images\house.jpg" />
     <Content Include="Content\Images\Jon.jpg" />
     <Content Include="Content\Images\Stark.png" />
