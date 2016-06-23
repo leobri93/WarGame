@@ -56,3 +56,11 @@
     });
 
 }();
+
+  function criaRadioButton() {
+	 									var dados = new Array("A Muralha", "Correrio", "as gemeas");
+	                                        for(var i = 0; i < dados.length; i++){
+
+											document.getElementById("fronteiras-inimigas").innerHTML+="<input type='radio' name='gender' value="+dados[i]+">"+dados[i]+"<br>"
+											}
+									}

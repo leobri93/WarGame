@@ -3,10 +3,10 @@
     src: url('../../fonts/Gameofthrones.ttf');
 }
 
-h1 {
-    font-family: Gameofthrones;
-    color:#ffffff;
-}
+
+
+
+
 
 
 header{
@@ -15,11 +15,25 @@ header{
 }
 
 body {
+    font-family: Gameofthrones;
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
 .inicio {
-    background: url('../Images/wallpaper12.jpg');
+    font-family: Gameofthrones;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: url('../Images/jon.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.tabuleiro{
+    font-family: Gameofthrones;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: url('../Images/house.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -27,7 +41,7 @@ body {
 .container {
 }
 #westeros-map {
-    
+    background-color:gray;
     width: 100%;
     border:2px solid #000000;
 }

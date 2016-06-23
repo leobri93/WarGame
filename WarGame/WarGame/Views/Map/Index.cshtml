@@ -1,14 +1,10 @@
-﻿ <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
+﻿
 
 
 <header>
     <h1>Warteros</h1>
 </header>
+<body class="tabuleiro">
 <div class="container">
     <div class="row">
         <div class="col-md-10">
@@ -18,7 +14,7 @@
             <div id="info-jogador" width="500" height="600">
                 <div id="cabecalho-jogador">
                     <h4>João das Neves</h4>
-                    <img src="/WarGame/WarGame/WarGame/Content/Images/stark2.png" alt="House Stark">
+                    <img src="../Content/Images/Stark2.png" width="100" alt="House Stark">
                 </div>
                 <div id="ataque">
                     <!--área de ataque-->
@@ -28,8 +24,7 @@
                           <h4>Ataque</h4>
                           
                           <!-- Trigger the modal with a button -->
-                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Atacar</button>
-
+                          <button type="button" onclick="criaRadioButton()" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" style="margin-bottom:20px;">Atacar</button>
                           <!-- Modal -->
                           <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
@@ -38,20 +33,24 @@
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Disputa: </h4>
-                                    <h4>Tropas ao combate:</h4>
+                                  <h4 class="modal-title">Disputa:</h4>
+                                    <h5>Tropas ao combate:</h5>
                           
                                     <select>
                                       <option value="1">1</option>
                                       <option value="2">2</option>
                                       <option value="3">3</option>
                                     </select>
-                                    <button type="button" >efetuar ataque</button>
+                                    <h5>Escolha de ataque:</h5>
+                                    <form action="">
+                                      <p id="fronteiras-inimigas" ></p>
+                                    </form>
                                 </div>
                                 <div class="modal-body">
                                   <p>aqui ocorre o ataque.</p>
                                 </div>
                                 <div class="modal-footer">
+                                  <button type="button" class="btn btn-default">efetuar ataque</button>
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                               </div>
@@ -69,8 +68,8 @@
         </div>
     </div>
 </div>
-
-
+</body>
+                                 
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     @section Scripts {
         @Scripts.Render("~/bundles/westeros-map")

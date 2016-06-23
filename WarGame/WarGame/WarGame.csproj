@@ -217,6 +217,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\arvore.jpg" />
+    <Content Include="Content\Images\dead.jpg" />
+    <Content Include="Content\Images\house.jpg" />
+    <Content Include="Content\Images\Jon.jpg" />
     <Content Include="Content\Images\Stark.png" />
     <Content Include="Content\Images\wallpaper12.jpg" />
     <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
