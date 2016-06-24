@@ -4,10 +4,12 @@
 }
 
 
-
-
-
-
+h1, h2, h3, h4, h5, h6 {
+    font-family: Gameofthrones;
+}
+h1 {
+    color:aliceblue;
+}
 
 header{
         font-family: Gameofthrones;
@@ -21,23 +23,18 @@ body {
 }
 
 .inicio {
-    font-family: Gameofthrones;
-    padding-top: 50px;
-    padding-bottom: 20px;
-    background: url('../Images/Jon.jpg');
+    background-image: url('../Images/Jon.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 }
 .tabuleiro{
-    font-family: Gameofthrones;
-    padding-top: 50px;
-    padding-bottom: 20px;
     background: url('../Images/game-of-thrones-house-flags-wallpaper-3201.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 }
+
 .container {
 }
 #westeros-map {
@@ -49,6 +46,15 @@ body {
      background-color:gray;
      border:2px solid #000000;
 
+}
+main div {
+  background: black;
+  padding: 15px;
+  max-width: 125px;
+  margin: 5px;
+}
+.inline-block-centralizado {
+  text-align: center;
 }
 
 /* Set padding to keep content from hitting the edges */

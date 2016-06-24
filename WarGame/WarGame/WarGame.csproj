@@ -217,10 +217,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\baratheon.png" />
     <Content Include="Content\Images\dead.jpg" />
     <Content Include="Content\Images\game-of-thrones-house-flags-wallpaper-3201.jpg" />
+    <Content Include="Content\Images\greyjoy.png" />
     <Content Include="Content\Images\Jon.jpg" />
+    <Content Include="Content\Images\lannister.png" />
     <Content Include="Content\Images\Stark.png" />
+    <Content Include="Content\Images\targaryen.png" />
+    <Content Include="Content\Images\tyrell.png" />
     <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
     <Content Include="Content\Images\Westeros\Dorne\sandstone.png" />
     <Content Include="Content\Images\Westeros\Dorne\sanspear.png" />

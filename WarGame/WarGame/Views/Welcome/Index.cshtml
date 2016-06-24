@@ -1,56 +1,57 @@
-﻿@{
-    
-    Layout = null;
-}
+﻿
+    @{
 
-@Styles.Render("~/Content/styles")
-@Scripts.Render("~/bundles/modernizr")
+        Layout = null;
+    }
 
-@Scripts.Render("~/bundles/scripts")
-<body class="inicio">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12" style="text-align:center;margin-top: 30px;">
-            <h1>Bem-vindo ao Warteros</h1>
+    @Styles.Render("~/Content/styles")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/scripts")
+    <body class="inicio">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center;margin-top: 30px;">
+                <h1>Bem-vindo ao Warteros</h1>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
-            <div class="well well-sm">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="sel1">Nome:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <input id="playerName" type="text" class="form-control" placeholder="Digite seu nome..." aria-describedby="nameField"/>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:15px">
-                    <div class="col-md-2">
-                        <label for="selFamilias">Selecione a familia:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <select class="form-control" id="selFamily">
-                                <option>Targaryen</option>
-                                <option>Lannister</option>
-                                <option>Stark</option>
-                                <option>Baratheon</option>
-                                <option>Greyjoy</option>
-                                <option>Tyrell</option>
-                            </select>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="sel1">Nome:</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input id="playerName" type="text" class="form-control" placeholder="Digite seu nome..." aria-describedby="nameField" />
                         </div>
                     </div>
-                </div>
-                <div class="row" style="text-align:center">
-                    <div id="button">
-                        <button class="btn btn-default" onclick="javascript: doSubmit();">Jogar</button>
+                    <div class="row" style="margin-top:15px">
+                        <div class="col-md-2">
+                            <label for="selFamilias">Selecione a familia:</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <select class="form-control" id="selFamily">
+                                    <option>Targaryen</option>
+                                    <option>Lannister</option>
+                                    <option>Stark</option>
+                                    <option>Baratheon</option>
+                                    <option>Greyjoy</option>
+                                    <option>Tyrell</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <div id="button">
+                            <button class="btn btn-default" onclick="javascript: doSubmit();">Jogar</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 @*Begin of Scripts*@
