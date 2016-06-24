@@ -12,7 +12,8 @@ h1.welcome-title {
 }
 
 .welcome {
-    background: url('../Images/wallpaper12.jpg');
+    background: url('../Images/game-of-thrones-house-flags-wallpaper-3201.jpg');
+	background-repeat: no-repeat;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -29,6 +30,31 @@ h1.welcome-title {
 .player-form{
    position:relative;
    left:33%;
+}
+
+.container {
+}
+#westeros-map {
+    background-color:gray;
+    width: 100%;
+    border:2px solid #000000;
+}
+#info-jogador {
+     background-color:gray;
+     border:2px solid #000000;
+
+}
+.qtd-tropas {
+    background-color:aliceblue;
+}
+main div {
+  background: black;
+  padding: 15px;
+  max-width: 125px;
+  margin: 5px;
+}
+.inline-block-centralizado {
+  text-align: center;
 }
 
 /* Set padding to keep content from hitting the edges */

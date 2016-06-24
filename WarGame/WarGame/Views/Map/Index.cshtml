@@ -1,14 +1,89 @@
-﻿@model WarGame.Models.PlayerViewModel
+<header>
+    <h1>Warteros</h1>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <canvas id="westeros-map" width="1100" height="600"></canvas>
+        </div>
+        <div class="col-md-2" >
+            <div id="info-jogador">
+                <div id="cabecalho-jogador">
+                    <h4 style="text-align:center">@ViewBag.Name @ViewBag.Familiy</h4>
+                    <main class="inline-block-centralizado" style="margin-bottom:10px">
+                        <img src="../Content/Images/Stark.png" width="100" alt="House Stark">
+                    </main>
+                </div>
+                <div id="ataque">
+                    <!--área de ataque-->
+                       
 
-<div class="row">
-    <span>@ViewBag.Name</span> <span>@ViewBag.Familiy</span>
-</div>
+                        <div class="container">
+                          <h5 style="text-align:center">Ataque</h5>
+                          
+                          <!-- Trigger the modal with a button -->
+                            <main class="inline-block-centralizado">
+                                <button type="button" onclick="criaRadioButton()" class="btn btn-default" data-toggle="modal" data-target="#myModal" style="margin-bottom:20px;">Atacar</button>
+                            </main>
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
 
-<div class="row">
-    <div class="col-md-12">
-        <canvas id="westeros-map" width="1200" height="600"></canvas>
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Disputa:</h4>
+                                                <h5>Tropas ao combate:</h5>
+
+                                                <select>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                                <h5>Escolha de ataque:</h5>
+                                                <form action="">
+                                                    <p id="fronteiras-inimigas"></p>
+                                                </form>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>aqui ocorre o ataque.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default">efetuar ataque</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>                      
+                </div>
+
+                    <!--area de distribuicao e confirmação de tropas-->
+                <h5 style="text-align:center">Distribuir tropas</h5>
+                <main class="inline-block-centralizado" style="margin-bottom:10px">
+                    <div class="container qtd-tropas">
+                        <h6 style="text-align:center">quantidade de tropas:</h6>
+                        <p id="qtd-tropas">3<p>
+                    </div>
+                </main>
+                    <div id="distribuir-tropas">
+                        <main class="inline-block-centralizado" style="margin-bottom:10px">
+                            <button type="button" class="btn btn-default" name="">+</button>
+                            <button type="button" class="btn btn-default">-</button>
+                        </main>
+                        <main class="inline-block-centralizado">
+                            <button type="button" class="btn btn-default" style="margin-bottom:20px">distribuir</button>
+                        </main>
+                    </div>
+                    <!--desistir da rodada-->
+                    <main class="inline-block-centralizado" style="margin-bottom:10px">
+                        <button type="button" class="btn btn-default">Passar</button>
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 @section Scripts {
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
