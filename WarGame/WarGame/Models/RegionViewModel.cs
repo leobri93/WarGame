@@ -32,7 +32,6 @@ namespace WarGame.Models
             this.kingdom = kingdom;
             this.x = x;
             this.y = y;
-            player = new PlayerViewModel("Computador", "Stark");
             troops = 1;
         }
 

@@ -11,6 +11,8 @@ namespace WarGame.Models
         private string name;
         private string family;
 
+        public PlayerViewModel() { }
+
         public PlayerViewModel(string name, string family) 
         {
             id = Guid.NewGuid().ToString("N");
