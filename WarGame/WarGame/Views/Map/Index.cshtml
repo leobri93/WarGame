@@ -1,10 +1,6 @@
-﻿
-
-
 <header>
     <h1>Warteros</h1>
 </header>
-<body class="tabuleiro">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10">
@@ -13,7 +9,7 @@
         <div class="col-md-2" >
             <div id="info-jogador">
                 <div id="cabecalho-jogador">
-                    <h4 style="text-align:center">João das Neves</h4>
+                    <h4 style="text-align:center">@ViewBag.Name @ViewBag.Familiy</h4>
                     <main class="inline-block-centralizado" style="margin-bottom:10px">
                         <img src="../Content/Images/Stark.png" width="100" alt="House Stark">
                     </main>
@@ -84,15 +80,12 @@
                     <main class="inline-block-centralizado" style="margin-bottom:10px">
                         <button type="button" class="btn btn-default">Passar</button>
                     </main>
-</div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</body>
-                                 
+
+@section Scripts {
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-    @section Scripts {
-        @Scripts.Render("~/bundles/westeros-map")
-    }
-
-
+    @Scripts.Render("~/bundles/westeros-map")
+}
