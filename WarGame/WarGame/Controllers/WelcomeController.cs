@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using WarGame.Models;
+using WarGame.Models.Enum;
 
 namespace WarGame.Controllers
 {
@@ -12,30 +13,9 @@ namespace WarGame.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Families = Enum.GetNames(typeof(Family)).Select(e => new SelectListItem { Text = e });
             return View();
         }
 
-        [HttpPost]
-        public ActionResult DoSubmit(string name, string family)
-        {
-            PlayerViewModel player = new PlayerViewModel(name, family);
-
-            bool success;
-            if(player != null)
-            {
-                success = true;
-            }
-            else
-            {
-                success = false;
-            }
-
-            return Content(JsonConvert.SerializeObject(new
-            {
-                Success = success,
-                PlayerInfo = player
-                
-            }));
-        }
     }
 }

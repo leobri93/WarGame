@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using WarGame.Helper;
+using Newtonsoft.Json;
 using WarGame.Models;
+using WarGame.Models.Enum;
+using WarGame.Helper;
 
 namespace WarGame.Controllers
 {
@@ -10,10 +15,10 @@ namespace WarGame.Controllers
 
         private static readonly List<RegionViewModel> regions = Westeros.Map();
 
-        [HttpGet]
-        [Route("maps")]
-        public ActionResult Index()
+        public ActionResult Index(PlayerViewModel player)
         {
+            ViewBag.Name = player.Name;
+            ViewBag.Familiy = player.Family;
             return View();
         }
 
