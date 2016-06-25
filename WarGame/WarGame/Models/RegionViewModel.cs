@@ -27,9 +27,6 @@ namespace WarGame.Models
             this.name = name;
             this.kingdom = kingdom;
 
-            this.x = x;
-            this.y = y;
-
             Objective obj = new Objective();
             
             //Raffling an objective
