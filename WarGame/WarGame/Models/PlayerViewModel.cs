@@ -38,4 +38,5 @@ namespace WarGame.Models
             set { family = value; }
         }
     }
+   
 }
