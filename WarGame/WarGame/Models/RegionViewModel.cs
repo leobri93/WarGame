@@ -19,18 +19,14 @@ namespace WarGame.Models
 
         private KingdomViewModel kingdom;
 
-        private string src;
+        private RegionPosition regionPosition;
 
-        private int x;
-
-        private int y;
-
-        public RegionViewModel(string name, string src, KingdomViewModel kingdom, int x, int y)
+        public RegionViewModel(string name, KingdomViewModel kingdom, RegionPosition regionPosition)
         {
             id = Guid.NewGuid().ToString("N");
             this.name = name;
-            this.src = src;
             this.kingdom = kingdom;
+
             this.x = x;
             this.y = y;
 
@@ -41,6 +37,7 @@ namespace WarGame.Models
 
             player = new PlayerViewModel("Computador", "Stark", objModel);
             troops = 1;
+            this.regionPosition = regionPosition;
         }
 
         public string Id
@@ -70,19 +67,9 @@ namespace WarGame.Models
             get { return kingdom; }
         }
 
-        public string Src
+        public RegionPosition RegionsPosition
         {
-            get { return src; }
-        }
-
-        public int X
-        {
-            get { return x; }
-        }
-
-        public int Y
-        {
-            get { return y; }
+            get { return regionPosition; }
         }
 
         public void Frontiers(List<RegionViewModel> frontiers) 
@@ -101,4 +88,50 @@ namespace WarGame.Models
         }
 
     }
+
+
+    public class RegionPosition
+    {
+        private string src;
+        private int regionX;
+        private int regionY;
+        private int troopsX;
+        private int troopsY;
+
+        public RegionPosition(string src, int regionX, int regionY, int troopsX, int troopsY)
+        {
+            this.src = src;
+            this.regionX = regionX;
+            this.regionY = regionY;
+            this.troopsX = troopsX;
+            this.troopsY = troopsY;
+        }
+
+        public string Src
+        {
+            get { return src; }
+        }
+
+        public int RegionX
+        {
+            get { return regionX; }
+        }
+
+        public int RegionY
+        {
+            get { return regionY; }
+        }
+
+        public int TroopsX
+        {
+            get { return troopsX; }
+        }
+
+        public int TroopsY
+        {
+            get { return troopsY; }
+        }
+
+    }
+
 }

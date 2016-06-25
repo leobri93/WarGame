@@ -1,10 +1,16 @@
-﻿<div class="row">
+﻿@model WarGame.Models.PlayerViewModel
+
+<div class="row">
+    <span>@ViewBag.Name</span> <span>@ViewBag.Familiy</span>
+</div>
+
+<div class="row">
     <div class="col-md-12">
         <canvas id="westeros-map" width="1200" height="600"></canvas>
     </div>
 </div>
 
-<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
 @section Scripts {
+    <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     @Scripts.Render("~/bundles/westeros-map")
 }

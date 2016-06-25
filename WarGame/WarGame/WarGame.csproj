@@ -209,6 +209,7 @@
     <Compile Include="Helper\Search.cs" />
     <Compile Include="Helper\Westeros.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Enum\Families.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KingdomViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -289,7 +290,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\westeros-map-view.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -328,7 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Enum\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

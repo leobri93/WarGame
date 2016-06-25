@@ -3,26 +3,32 @@
     src: url('../../fonts/Gameofthrones.ttf');
 }
 
-h1 {
+h1.welcome-title {
     font-family: Gameofthrones;
     color:#ffffff;
+    text-shadow:2px 2px #000; 
+    text-align:center;
+    margin-bottom:35px;
 }
 
-
-header{
-        font-family: Gameofthrones;
-       
-}
-
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-.inicio {
+.welcome {
     background: url('../Images/wallpaper12.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+    width:100%;
+    height:100%;
+    position:fixed;
+}
+
+.content {
+    position:relative;
+    top:15%;
+}
+
+.player-form{
+   position:relative;
+   left:33%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -43,4 +49,8 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.row {
+    margin-left:0px !important;
 }

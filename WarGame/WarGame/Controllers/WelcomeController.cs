@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using WarGame.Models;
+<<<<<<< HEAD
 using WarGame.Helper;
+=======
+using WarGame.Models.Enum;
 
 namespace WarGame.Controllers
 {
@@ -13,9 +16,10 @@ namespace WarGame.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Families = Enum.GetNames(typeof(Family)).Select(e => new SelectListItem { Text = e });
             return View();
         }
-
+		
         [HttpPost]
         public ActionResult DoSubmit(string name, string family)
         {

@@ -1,97 +1,40 @@
-﻿@{
-    
-    Layout = null;
-}
+﻿@model WarGame.Models.PlayerViewModel
 
-@Styles.Render("~/Content/styles")
-@Scripts.Render("~/bundles/modernizr")
-
-@Scripts.Render("~/bundles/scripts")
-<body class="inicio">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12" style="text-align:center;margin-top: 30px;">
-            <h1>Bem-vindo ao Warteros</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
-            <div class="well well-sm">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="sel1">Nome:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <input id="playerName" type="text" class="form-control" placeholder="Digite seu nome..." aria-describedby="nameField"/>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:15px">
-                    <div class="col-md-2">
-                        <label for="selFamilias">Selecione a familia:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <select class="form-control" id="selFamily">
-                                <option>Targaryen</option>
-                                <option>Lannister</option>
-                                <option>Stark</option>
-                                <option>Baratheon</option>
-                                <option>Greyjoy</option>
-                                <option>Tyrell</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="text-align:center">
-                    <div id="button">
-                        <button class="btn btn-default" onclick="javascript: doSubmit();">Jogar</button>
-                    </div>
-                </div>
+<div class="welcome">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="welcome-title">Bem-vindo ao Warteros</h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4 well well-lg player-form">
+                @using (Html.BeginForm("Index", "Map", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Nome:</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(p => p.Name, new
+                        {
+                            @class = "form-control",
+                            @placeholder = "Digite seu primeiro nome ..."
+                        })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Família:</label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(p => p.Family, (IEnumerable<SelectListItem>)ViewBag.Families, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <div id="button">
+                            <button class="btn btn-default" id="play">Jogar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
     </div>
 </div>
-</body>
-
-@*Begin of Scripts*@
-<script>
-    function initializePage() {
-
-    }
-
-    function goToMapsPage() {
-       
-    }
-
-    function doSubmit() {
-        var name = $('#playerName').val();
-        var family = $('#selFamily').val();
-
-        $.ajax({
-            url: '@Url.Action("DoSubmit", "Welcome")',
-            data: JSON.stringify({ name: name, family: family }),
-            type: "post",
-            contentType: "application/json",
-            cache: false,
-            dataType: 'json',
-            timeout: 60 * 5 * 1e3,
-            success: function (result) {
-                if (result.Success) {
-                    var playerInfo = result.playerInfo
-                    window.location.href = "@Url.Action("Index", "Map")";
-                } else {
-                    window.alert("Erro ao criar jogador");
-                }
-
-            },
-            error: function (err) {
-
-            }
-        })
-    }
-
-
-    $(document).ready(function () {
-        initializePage();
-    });
-</script>
