@@ -203,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Distributions.cs" />
     <Compile Include="Helper\Kingdom.cs" />
     <Compile Include="Helper\Objective.cs" />
     <Compile Include="Helper\Region.cs" />
