@@ -10,14 +10,14 @@ namespace WarGame.Models
         private string id;
         private string name;
         private string family;
+        private ObjectiveModel objective { get; set; }
 
-        public PlayerViewModel() { }
-
-        public PlayerViewModel(string name, string family) 
+        public PlayerViewModel(string name, string family, ObjectiveModel objective) 
         {
             id = Guid.NewGuid().ToString("N");
             this.name = name;
             this.family = family;
+            this.objective = objective;
         }
 
         public string Id
