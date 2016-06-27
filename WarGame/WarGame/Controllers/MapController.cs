@@ -28,5 +28,32 @@ namespace WarGame.Controllers
         {
             return Json(regions, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult DoSubmit(string name, string family)
+        {
+            Objective obj = new Objective();
+
+            ObjectiveModel objModel = obj.RafflingObjectives();
+
+            PlayerViewModel player = new PlayerViewModel(name, family, objModel);
+
+            bool success;
+            if (player != null)
+            {
+                success = true;
+            }
+            else
+            {
+                success = false;
+            }
+
+            return Content(JsonConvert.SerializeObject(new
+            {
+                Success = success,
+                PlayerInfo = player
+
+            }));
+        }
     }
 }
