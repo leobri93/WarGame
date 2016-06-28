@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using WarGame.Models;
+using WarGame.Helper;
 using WarGame.Models.Enum;
 
 namespace WarGame.Controllers
@@ -16,6 +17,5 @@ namespace WarGame.Controllers
             ViewBag.Families = Enum.GetNames(typeof(Family)).Select(e => new SelectListItem { Text = e });
             return View();
         }
-
     }
 }
