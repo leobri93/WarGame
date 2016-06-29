@@ -2,7 +2,10 @@
     font-family: Gameofthrones;
     src: url('../../fonts/Gameofthrones.ttf');
 }
-
+h1,h2,h3,h4,h5,h6 {
+     font-family: Gameofthrones;
+     
+}
 h1.welcome-title {
     font-family: Gameofthrones;
     color:#ffffff;
@@ -12,13 +15,22 @@ h1.welcome-title {
 }
 
 .welcome {
-    background: url('../Images/wallpaper12.jpg');
+    background: url('../Images/Jon.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
     width:100%;
     height:100%;
     position:fixed;
+}
+.tabuleiro {
+    background: url('../Images/game-of-thrones-house-flags-wallpaper-3201.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+    width:100%;
+    height:100%;
+    
 }
 
 .content {
@@ -30,6 +42,60 @@ h1.welcome-title {
    position:relative;
    left:33%;
 }
+
+.container {
+}
+#westeros-map {
+    background-color:gray;
+    width: 100%;
+    border:2px solid #000000;
+}
+#info-jogador {
+     background-color:gray;
+     border:2px solid #000000;
+
+}
+.qtd-tropas {
+    background-color:aliceblue;
+}
+main div {
+  background: black;
+  padding: 15px;
+  max-width: 125px;
+  margin: 5px;
+}
+.inline-block-centralizado {
+  text-align: center;
+}
+.dado-atacante{
+    /*definimos a largura do box*/
+    width:25px;
+    /* definimos a altura do box */
+    height:25px;
+    /* definimos a cor de fundo do box */
+    background-color:darkred;
+    /* definimos o quão arredondado irá ficar nosso box */
+    border-radius: 4px;
+    float:left;
+    }
+.dado-defensor {
+    /*definimos a largura do box*/
+    width:25px;
+    /* definimos a altura do box */
+    height:25px;
+    /* definimos a cor de fundo do box */
+    background-color:chartreuse;
+    /* definimos o quão arredondado irá ficar nosso box */
+    border-radius: 4px;
+    float:left;
+}
+
+#numero-dado {
+    color:aliceblue;
+    padding-left:7px;
+}
+
+Read more: http://www.linhadecodigo.com.br/artigo/3611/bordas-arredondadas-css3-estilizando-bordas.aspx#ixzz4CufgBd4D
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

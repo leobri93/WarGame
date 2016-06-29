@@ -76,5 +76,43 @@
     $(document).ready(function () {
         buildMap();     
     });
-    
+
+
 }();
+
+function criaRadioButtonAtaque() {
+
+    document.getElementById("fronteiras-inimigas").innerHTML = "";
+    var dados = new Array("A Muralha", "Correrio", "as gemeas");
+    for (var i = 0; i < dados.length; i++) {
+        document.getElementById("fronteiras-inimigas").innerHTML += "<option value=" + dados[i] + ">" + dados[i] + "</option>" + "<br>";
+    }
+    
+	
+}
+
+function criaRadioButtonMovimento() {
+
+    document.getElementById("fronteiras-aliadas").innerHTML = "";
+    var dados = new Array("A Muralha", "Correrio", "as gemeas");
+    for (var i = 0; i < dados.length; i++) {
+        document.getElementById("fronteiras-aliadas").innerHTML += "<option value=" + dados[i] + ">" + dados[i] + "</option>" + "<br>";
+    }
+
+
+}
+
+function rolarDeDados() {
+    
+    var tropasAtacantes = 2;
+    var tropasDefensoras = tropasAtacantes;
+    document.getElementById("disputa").innerHTML = "";
+    for (var i = 0; i < tropasAtacantes; i++) {
+        document.getElementById("disputa").innerHTML += "<div class='dado-atacante'>" + "<h5 id='numero-dado'>"+Math.floor((Math.random() * 6) + 1); +"<h5>"+"</div>";
+    }
+    document.getElementById("disputa").innerHTML += "<br><br><h4>Versus</h4><br>";
+    for (var i = 0; i < tropasDefensoras; i++) {
+        document.getElementById("disputa").innerHTML += "<div class='dado-defensor'>" + "<h5 id='numero-dado'>" + Math.floor((Math.random() * 6) + 1); +"<h5>" + "</div>";
+    }
+}
+
