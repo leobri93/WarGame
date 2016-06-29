@@ -9,7 +9,7 @@ namespace WarGame.Helper
     public static class Search 
     {
 
-        public static List<RegionViewModel> DominatedRegions(this List<RegionViewModel> regions, int playerId) 
+        public static List<RegionViewModel> DominatedRegions(this List<RegionViewModel> regions, string playerId) 
         {
             var dominatedRegions = regions.Where(p => p.Player.Id.Equals(playerId)).ToList();
 
