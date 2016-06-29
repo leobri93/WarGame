@@ -1,6 +1,7 @@
 ﻿var westeros_map = function () {
 
     var stage = new createjs.Stage("westeros-map");
+    var _game = game_play;
     var scale = 0.3;
     var alpha = 0.8;
 
@@ -35,7 +36,8 @@
         bitmap.model = {
             id : element.Id,
             name : element.Name,
-            troops : element.Troops
+            troops: element.Troops,
+            player: element.Player.Id
         };
         bitmap.scaleX = bitmap.scaleY = scale;
         bitmap.alpha = alpha;
@@ -44,7 +46,6 @@
 
         bitmap.addEventListener("click", function () {
             var region = bitmap.model;
-            text.text = ++region.troops;
             if(region.troops > 9){
                 text.x = element.RegionsPosition.TroopsX - 8;
                 text.y = element.RegionsPosition.TroopsY - 8;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WarGame.Helper;
+using System.Linq;
 
 namespace WarGame.Models
 {
@@ -74,6 +75,11 @@ namespace WarGame.Models
             this.frontiers = frontiers;
         }
 
+        public List<RegionViewModel> Frontiers() 
+        {
+            return frontiers;
+        }
+
         public RegionViewModel CheckFrontier(RegionViewModel region)
         {
             var index = frontiers.BinarySearch(region);
@@ -83,6 +89,39 @@ namespace WarGame.Models
             }
             return null;
         }
+
+        public List<RegionViewModel> EnemyFrontiers()
+        {
+            return frontiers.Where(r => r.Player.Id != id).ToList();
+        }
+
+        public List<RegionViewModel> FriendlyFrontiers() 
+        {
+            return frontiers.Where(r => r.Player.Id == id).ToList();
+        }
+
+        public int[] Attack(RegionViewModel defense , int[] aplayer, int[] dplayer) 
+        {
+            var attackLostTroops = 0;
+            var defenseLostTroops = 0;
+            for (var i = 0; i < 3; i++)
+            {
+                if (aplayer.Length > i && dplayer.Length > i)
+                {
+                    if (aplayer[i] <= dplayer[i])
+                    {
+                        attackLostTroops++;
+                        --troops;
+                    } else
+                    {
+                        defenseLostTroops++;
+                        --defense.Troops;
+                    }
+                }
+            }
+            return new int[] { attackLostTroops, defenseLostTroops };
+        }
+
 
     }
 
