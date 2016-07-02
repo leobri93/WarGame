@@ -83,14 +83,14 @@ namespace WarGame.Models
             return null;
         }
 
-        public List<RegionViewModel> EnemyFrontiers()
+        public List<RegionViewModel> EnemyFrontiers(string id)
         {
             return frontiers.Where(r => r.Player.Id != id).ToList();
         }
 
-        public List<RegionViewModel> FriendlyFrontiers() 
+        public List<RegionViewModel> FriendlyFrontiers(string id) 
         {
-            return frontiers.Where(r => r.Player.Id == id).ToList();
+            return frontiers.Where(r => r.Player.Id.Equals(id)).ToList();
         }
 
         public int[] Attack(RegionViewModel defense , int[] aplayer, int[] dplayer) 

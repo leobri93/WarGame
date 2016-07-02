@@ -14,12 +14,12 @@ namespace WarGame.Controllers
     public class MapController : Controller
     {
 
-        private static readonly List<RegionViewModel> regions = Westeros.Map();
+        private static List<RegionViewModel> regions;
         private static List<PlayerViewModel> players;
 
         public ActionResult Index(PlayerViewModel player)
         {
-
+            regions = Westeros.Map();
             var obj = new Objective();
             var myFamily = player.Family.Name;
             var myObj = obj.RafflingObjectives();
@@ -57,7 +57,7 @@ namespace WarGame.Controllers
         public JsonResult Attack(string rid) 
         {
             var region = regions.Region(rid);
-            var enemyBorders = region.EnemyFrontiers();
+            var enemyBorders = region.EnemyFrontiers(region.Player.Id);
 
             if (enemyBorders.Count() > 0 && region.Troops > 1)
             {
@@ -98,12 +98,17 @@ namespace WarGame.Controllers
                 victory = defense.Name;
             }
 
-            var occupiedTerritory = false;
+            string color = null;
             if (defense.Troops < 1)
-                occupiedTerritory = true;
+            {
+                defense.Player = attack.Player;
+                defense.Troops++;
+                attack.Troops--;
+                color = attack.Player.Family.Color;
+            }
 
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { aplayer = aplayer, dplayer = dplayer, result = resultBattle, victory = victory, occupiedTerritory = occupiedTerritory });
+            return Json(new { aplayer = aplayer, dplayer = dplayer, attackName = attack.Name, attackTroops = attack.Troops, defenseName = defense.Name, defenseTroops = defense.Troops, victory = victory, color = color});
         }
 
         private int[] rollTheDice(int[] player, Random random)
@@ -148,7 +153,7 @@ namespace WarGame.Controllers
         public JsonResult MoveTroops(string rid)
         {
             var region = regions.Region(rid);
-            var friendlyBorders = region.FriendlyFrontiers();
+            var friendlyBorders = region.FriendlyFrontiers(region.Player.Id);
 
             if (friendlyBorders.Count() > 0 && region.Troops > 1)
             {
@@ -173,7 +178,7 @@ namespace WarGame.Controllers
             destinationRegion.Troops += troops;
 
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { sourceTroops = sourceRegion.Troops, destinationTroops = troops });
+            return Json(new { nameSource = sourceRegion.Name, sourceTroops = sourceRegion.Troops, nameDestination = destinationRegion.Name, destinationTroops = destinationRegion.Troops });
         }
 
     }

@@ -128,7 +128,7 @@ namespace WarGame.Helper
                    { region.TheTwins, region.CapeKrake, region.Barrowlands, region.WhiteHabor, region.Harlaw });
 
             region.WhiteHabor.Frontiers(new List<RegionViewModel>
-                  { region.TheNeck, region.TheWolfwoods, region.Barrowlands, region.Winterfell, region.WidowsWatch });
+                  { region.TheNeck, region.Barrowlands, region.Winterfell, region.WidowsWatch });
 
             region.StoneShore.Frontiers(new List<RegionViewModel>
                   { region.Barrowlands, region.TheWolfwoods, region.BearIsland });

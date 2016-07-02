@@ -3,33 +3,30 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Movimentar tropas</h4>
-
+                <h4 class="modal-title distribute name-region">Movimentar tropas</h4>
                 <main class="inline-block-centralizado" style="margin-bottom:10px">
                     <div class="container qtd-tropas">
-                        <h6 style="text-align:center">quantidade de tropas na area:</h6>
-                        <p id="qtd-tropas">3<p>
+                        <h6 style="text-align:center">quantidade de tropas na região:</h6>
+                        <p class="qtd-troops distribute"><p>
                     </div>
                 </main>
             </div>
             <div class="modal-body">
+                <input class="hidden distribute region-id" value=""/>
                 <div id="movimentar-tropas">
                     <h5>Escolha de movimento:</h5>
-                    <select class="form-control" id="fronteiras-aliadas"></select>
+                    <select class="form-control distribute" id="fronteiras-aliadas">
+                    </select>
                     <h5>Quantidade de tropas a mover:</h5>
                     <main class="inline-block-centralizado" style="margin-bottom:10px">
-                        <p id="qtd-mov-tropas">
-                            <select class="form-control">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                        <p>
+                        <select class="form-control distribute" id="move-troops">
+                        </select>
                     </main>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default">Movimentar</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="move-btn">movimentar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">fechar</button>
             </div>
         </div>
     </div>

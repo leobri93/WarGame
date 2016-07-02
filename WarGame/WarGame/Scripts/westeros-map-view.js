@@ -42,7 +42,9 @@
         bitmap.shadow = shadow;
 
         bitmap.addEventListener("click", function () {
-            _game.distributed_troops(element.Id, element.Player.Id);
+              _game.distributed_troops(element.Id, element.Player.Id);
+          //  _game.move_troops(element.Id);
+          //  _game.attack(element.Id);
         });
         bitmap.addEventListener("mouseover",  function () {
             bitmap.alpha = 1;
@@ -68,50 +70,26 @@
     $(document).ready(function () {
         buildMap();
 
-        $("#add-troops").on("click", function () {
+        $("#add-troops-btn").on("click", function () {
             var troops = $("#troops-available").val();
             var rid = $("#region-id").val();
             _game.add_troops(rid, troops, stage);
         });
 
+        $("#move-btn").on("click", function () {
+            var sid = $(".region-id").val();
+            var did = $("#fronteiras-aliadas").val();
+            var troops = $("#move-troops").val();
+            _game.transfer_troops(sid, did, troops, stage);
+        });
+
+        $("#attack").on("click", function () {
+            var atroops = $("#troops-attack").val();
+            var did = $("#fronteiras-inimigas").val();
+            var aid = $(".region-id").val();
+             _game.battle(aid, did, atroops, stage);
+        });
+
     });
 
-
 }();
-
-function criaRadioButtonAtaque() {
-
-    document.getElementById("fronteiras-inimigas").innerHTML = "";
-    var dados = new Array("A Muralha", "Correrio", "as gemeas");
-    for (var i = 0; i < dados.length; i++) {
-        document.getElementById("fronteiras-inimigas").innerHTML += "<option value=" + dados[i] + ">" + dados[i] + "</option>" + "<br>";
-    }
-    
-	
-}
-
-function criaRadioButtonMovimento() {
-
-    document.getElementById("fronteiras-aliadas").innerHTML = "";
-    var dados = new Array("A Muralha", "Correrio", "as gemeas");
-    for (var i = 0; i < dados.length; i++) {
-        document.getElementById("fronteiras-aliadas").innerHTML += "<option value=" + dados[i] + ">" + dados[i] + "</option>" + "<br>";
-    }
-
-
-}
-
-function rolarDeDados() {
-    
-    var tropasAtacantes = 2;
-    var tropasDefensoras = tropasAtacantes;
-    document.getElementById("disputa").innerHTML = "";
-    for (var i = 0; i < tropasAtacantes; i++) {
-        document.getElementById("disputa").innerHTML += "<div class='dado-atacante'>" + "<h5 id='numero-dado'>"+Math.floor((Math.random() * 6) + 1); +"<h5>"+"</div>";
-    }
-    document.getElementById("disputa").innerHTML += "<br><br><h4>Versus</h4><br>";
-    for (var i = 0; i < tropasDefensoras; i++) {
-        document.getElementById("disputa").innerHTML += "<div class='dado-defensor'>" + "<h5 id='numero-dado'>" + Math.floor((Math.random() * 6) + 1); +"<h5>" + "</div>";
-    }
-}
-
