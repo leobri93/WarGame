@@ -6,190 +6,166 @@ using WarGame.Models;
 
 namespace WarGame.IA
 {
-    public static class Attack
+    public class Attack
     {
-        public static RegionViewModel ataque(this PlayerViewModel player, List<RegionViewModel> regions)
+        public static RegionViewModel Ataque(this PlayerViewModel player, List<RegionViewModel> regions)
         {
             List<RegionViewModel> orderByTroops = new List<RegionViewModel>();
-            List<RegionViewModel> myRegions = new List<RegionViewModel>();
+            RegionViewModel regionAttack;
+            string nameFamily, nameKingdom, nameKingdom2;
             if (player.Objective.id == 8 || player.Objective.id == 11)
             {
-                int i = 0;
-                var regionsDominatedWithMostTroops = regions.Where(x => x.Player.Id == player.Id)                
-                                                     .OrderByDescending(x => x.Troops).ToList();
-                RegionViewModel regionAttack;
-                do
-                {
-                    regionAttack = regionsDominatedWithMostTroops[i].EnemyFrontiers(player.Id)
-                                                                    .OrderBy(x =>x.Troops).FirstOrDefault();
-                    i++;
-                } while (regionAttack == null);
-                
+                regionAttack = AttackRandom(regions,player);
                 return regionAttack;
             }
-
+        
             if (player.Objective.id == 6)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Player.Family.Name == "STARK"; });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameFamily = "Stark";
+                regionAttack = AttackRandomFamily(nameFamily, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("O EXERCITO BARATHEON"))
+            if (player.Objective.id == 5)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Player.Family.Name == "BARATHEON"; });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameFamily = "Baratheon";
+                regionAttack = AttackRandomFamily(nameFamily, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("O EXERCITO LANNISTER"))
+            if (player.Objective.id == 4)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Player.Family.Name == "LANNISTER"; });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameFamily = "Lannister";
+                regionAttack = AttackRandomFamily(nameFamily, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("O EXERCITO GREYJOY"))
+            if (player.Objective.id == 3)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Player.Family.Name == "GREYJOY"; });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameFamily = "Greyjoy";
+                regionAttack = AttackRandomFamily(nameFamily, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("O EXERCITO TARGARYEN"))
+            if (player.Objective.id == 2)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Player.Family.Name == "TARGARYEN"; });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameFamily = "Targaryen";
+                regionAttack = AttackRandomFamily(nameFamily, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("O EXERCITO TYRELL"))
+            if (player.Objective.id == 1)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Player.Family.Name == "TYRELL"; });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameFamily = "Tyrell";
+                regionAttack = AttackRandomFamily(nameFamily, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("DORNE, THE WESTERLANDS E THE CROWLANDS"))
+            if (player.Objective.id == 10)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
+                nameKingdom = "Dorne";
+                nameKingdom2 = "The Westerlands";
+                regionAttack = AttackRandomKingdom(nameKingdom,nameKingdom2,regions,player);
+                if (regionAttack == null)
                 {
-                    orderByTroops.AddRange(r.Frontiers());
+                    nameKingdom = "The Crownlands";
+                    regionAttack = AttackRandomKingdom(nameKingdom,nameKingdom2, regions, player); 
                 }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Kingdom.Name.Equals("DORNE") || r.Kingdom.Name.Equals("THE WESTERLANDS") || r.Kingdom.Name.Equals("THE CROWLANDS"); });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
-
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("THE NORTH E THE STORMLANDS"))
+            if (player.Objective.id == 13)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Kingdom.Name.Equals("THE NORTH") || r.Kingdom.Name.Equals("THE STORMLANDS"); });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameKingdom = "The North";
+                nameKingdom2 = "The Stormlands";
+                regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("THE NORTH E DORNE"))
+            if (player.Objective.id == 9)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Kingdom.Name.Equals("THE NORTH") || r.Kingdom.Name.Equals("DORNE"); });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameKingdom = "The North";
+                nameKingdom2 = "Dorne";
+                regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2, regions, player);
+                return regionAttack;
             }
-            if (player.Objective.id.Equals("THE RIVERLANDS E THE REACH"))
+            if (player.Objective.id == 7)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Kingdom.Name.Equals("THE RIVERLANDS") || r.Kingdom.Name.Equals("THE REACH"); });
-                if (frontiersDominatedByObjective == null) { return orderByTroops.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameKingdom = "The Riverlands";
+                nameKingdom2 = "The Reach";
+                regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2, regions, player);
+                return regionAttack;
             }
             if (player.Objective.id.Equals("THE REACH, THE VALE OF ARRYN e mais um terceiro "))
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                List<RegionViewModel> thirdKingdom = new List<RegionViewModel>();
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    orderByTroops.AddRange(r.Frontiers());
-                    thirdKingdom.Add(r);
-                }
-                orderByTroops.Sort(delegate (RegionViewModel r1, RegionViewModel r2) {
-                    return r1.Troops.CompareTo(r2.Troops);
-                });
-                List<RegionViewModel> theThird = thirdKingdom;
-                theThird.RemoveAll(delegate (RegionViewModel r) { return r.Kingdom.Name.Equals("THE VALE OF ARRYN") || r.Kingdom.Name.Equals("THE REACH"); });
-                var theThirdKingdom = (from k in theThird orderby k.Kingdom descending select k.Kingdom).FirstOrDefault();
-                List<RegionViewModel> frontiersDominatedByObjective = orderByTroops.FindAll(delegate (RegionViewModel r) { return r.Kingdom.Name.Equals("THE VALE OF ARRYN") || r.Kingdom.Name.Equals("THE REACH") || r.Kingdom.Name.Equals(theThirdKingdom); });
-                if (frontiersDominatedByObjective == null) { return theThird.FirstOrDefault(); }
-                return frontiersDominatedByObjective.FirstOrDefault();
+                nameKingdom = "The Reach";
+                nameKingdom2 = "TheValeOfArryn";
+                regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2, regions, player);
+                return regionAttack;
+            }
+        
+            return null;
+        }
+
+        private static RegionViewModel AttackRandom(List<RegionViewModel> regions, PlayerViewModel player)
+        {
+            
+            var regionsDominatedWithMostTroops = regions.Where(x => x.Player.Id == player.Id)
+                                                     .OrderBy(x => x.Troops).ToList();
+            int i = regionsDominatedWithMostTroops.Count - 1;
+            RegionViewModel regionAttack;
+            do
+            {
+                regionAttack = regionsDominatedWithMostTroops[i].EnemyFrontiers(player.Id)
+                                                                .OrderBy(x => x.Troops).FirstOrDefault();
+                i--;
+            } while (regionAttack != null || i == 0);
+        
+            return regionAttack;
+        }
+        private static RegionViewModel AttackRandomFamily(string family, List<RegionViewModel> regions, PlayerViewModel player)
+        {
+            var regionsDominatedWithMostTroops = regions.Where(x => x.Player.Id.Equals(player.Id))
+                                                        .Where(x1 => x1.Troops > 1)
+                                                        .OrderBy(x => x.Troops).ToList();
+            int i = regionsDominatedWithMostTroops.Count - 1;
+            RegionViewModel regionAttack;
+            do
+            {
+                regionAttack = regionsDominatedWithMostTroops[i].EnemyFrontiers(player.Id)
+                                                                .Where(x1 => x1.Player.Family.Name.Equals(family))
+                                                                .OrderBy(x => x.Troops).FirstOrDefault();
+
+                i--;
+
+            } while (regionAttack == null || i != 0);
+
+            if (regionAttack == null)
+            {
+                regionAttack = regionsDominatedWithMostTroops[i].EnemyFrontiers(player.Id)
+                                                            .OrderBy(x => x.Troops).FirstOrDefault();
             }
 
-            return null;
+            return regionAttack;
+        }
+
+        private static RegionViewModel AttackRandomKingdom(string name,string name2, List<RegionViewModel> regions, PlayerViewModel player)
+        {
+            
+            var regionsDominatedWithMostTroops = regions.Where(x => x.Player.Id.Equals(player.Id))
+                                                        .Where(x1 => x1.Troops > 1)
+                                                        .OrderBy(x => x.Troops).ToList();
+            int i = regionsDominatedWithMostTroops.Count - 1;
+            RegionViewModel regionAttack;
+            do
+            {
+                regionAttack = regionsDominatedWithMostTroops[i].EnemyFrontiers(player.Id)
+                                                                .Where(x => x.Kingdom.Name.Equals(name)||x.Kingdom.Name.Equals(name2))
+                                                                .OrderBy(x => x.Troops).FirstOrDefault();
+                
+                i--;
+
+            } while (regionAttack == null || i != 0);
+
+            if (regionAttack == null)
+            {
+                regionAttack = regionsDominatedWithMostTroops[i].EnemyFrontiers(player.Id)
+                                                            .OrderBy(x => x.Troops).FirstOrDefault();
+            }
+
+            return regionAttack;
         }
     }
 }
