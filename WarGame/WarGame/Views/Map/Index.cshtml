@@ -1,5 +1,10 @@
+@Html.Partial("_Attack")
+@Html.Partial("_Battle")
+@Html.Partial("_Distribute")
+@Html.Partial("_MoveTroops")
+@Html.Partial("_Objective")
 
-<body class="tabuleiro">
+<div class="tabuleiro">
     <header>
         <h1>Warteros</h1>
     </header>
@@ -13,215 +18,32 @@
                     <div id="cabecalho-jogador">
                         <h4 style="text-align:center">@ViewBag.Name @ViewBag.Familiy</h4>
                         <main class="inline-block-centralizado" style="margin-bottom:10px">
-                            <img src="../Content/Images/Stark.png" width="100" alt="House Stark">
+                            <img src="@ViewBag.Src" width="100" alt="House Stark">
                         </main>
                     </div>
-
-                    <!--Visualizar objetivo-->
                     <div class="container">
-                        <h5 style="text-align:center">Objetivo</h5>
-
-                        <!-- Trigger the modal with a button -->
                         <main class="inline-block-centralizado">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-objetivo" style="margin-bottom:20px;">Objetivo</button>
                         </main>
-                        <!-- Modal -->
-                        <div class="modal fade" id="modal-objetivo" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Objetivo da casa @ViewBag.Familiy:</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div id="Objetivo-Jogador">
-                                           <span>Aqui aparece o objetivo</span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-
-
-
-
                     <div id="ataque">
-                        <!--área de ataque-->
-
-
                         <div class="container">
-                            <h5 style="text-align:center">Ataque</h5>
-
-                            <!-- Trigger the modal with a button -->
                             <main class="inline-block-centralizado">
                                 <button type="button" id="btn-ataque" onclick="criaRadioButtonAtaque()" class="btn btn-default" data-toggle="modal" data-target="#modal-ataque" style="margin-bottom:20px;">Atacar</button>
                             </main>
-                            <!-- Modal -->
-                            <div class="modal fade" id="modal-ataque" role="dialog">
-                                <div class="modal-dialog">
-
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Disputa:</h4>
-                                            
-                                        </div>
-                                        <div class="modal-body">
-                                            <h5>Tropas ao combate:</h5>
-                                            <select class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                            <h5>Escolha de ataque:</h5>
-                                            <!--mostra as fronteiras inimigas-->
-                                            <select class="form-control" id="fronteiras-inimigas"></select>
-                                        </div>
-                                        <div class="modal-footer">
-                                           <!--<button type="button" class="btn btn-default">efetuar ataque</button>-->
-                                            <button type="button" onclick="rolarDeDados()" class="btn btn-default" data-toggle="modal" data-target="#resultado-disputa" >efetuar ataque</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
-                    <!--area de resultado de disputa-->
                     <div class="container">
-                                               
-                        <!-- Modal -->
-                        <div class="modal fade" id="resultado-disputa" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Resultado de disputa</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p id="disputa"></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <!--area de distribuicao e confirmação de tropas-->
-                    <div class="container">
-                        <h5 style="text-align:center">Distribuir</h5>
-
-                        <!-- Trigger the modal with a button -->
                         <main class="inline-block-centralizado">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-distribui" style="margin-bottom:20px;">Distribuir</button>
                         </main>
-                        <!-- Modal -->
-                        <div class="modal fade" id="modal-distribui" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Distribuir tropas</h4>
-                                        
-                                        <main class="inline-block-centralizado" style="margin-bottom:10px">
-                                            <div class="container qtd-tropas">
-                                                <h6 style="text-align:center">quantidade de tropas disponiveis:</h6>
-                                                <p id="qtd-tropas">3<p>
-                                            </div>
-                                        </main>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div id="distribuir-tropas">
-                                            <h6>quantidade de tropas para esta area:</h6>
-                                            <select class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default">distribuir</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <!--Area de movimentaçao de tropas-->
                     <div class="container">
-                        <h5 style="text-align:center">Movimentar</h5>
-
-                        <!-- Trigger the modal with a button -->
                         <main class="inline-block-centralizado">
                             <button type="button" class="btn btn-default" onclick="criaRadioButtonMovimento()" data-toggle="modal" data-target="#modal-mov-tropas" style="margin-bottom:20px;">Movimentar</button>
                         </main>
-                        <!-- Modal -->
-                        <div class="modal fade" id="modal-mov-tropas" role="dialog">
-                            <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Movimentar tropas</h4>
-
-                                        <main class="inline-block-centralizado" style="margin-bottom:10px">
-                                            <div class="container qtd-tropas">
-                                                <h6 style="text-align:center">quantidade de tropas na area:</h6>
-                                                <p id="qtd-tropas">3<p>
-                                            </div>
-                                        </main>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div id="movimentar-tropas">
-                                            <h5>Escolha de movimento:</h5>
-                                            <select class="form-control" id="fronteiras-aliadas"></select>
-                                            <h5>Quantidade de tropas a mover:</h5>
-                                            <main class="inline-block-centralizado" style="margin-bottom:10px">
-                                                <p id="qtd-mov-tropas">
-                                                    <select class="form-control">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                    </select>
-                                                <p>
-                                            </main>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default">Movimentar</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                   
-
-
-                    
-                    
-                    <!--desistir da rodada-->
                     <main class="inline-block-centralizado" style="margin-bottom:10px">
                         <button type="button" class="btn btn-default">Passar rodada</button>
                     </main>
@@ -229,9 +51,9 @@
             </div>
         </div>
     </div>
-</body>
-
-    @section Scripts {
-        <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-        @Scripts.Render("~/bundles/westeros-map")
-    }
+</div>
+   
+@section Scripts {
+    <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+    @Scripts.Render("~/bundles/westeros-map")
+}

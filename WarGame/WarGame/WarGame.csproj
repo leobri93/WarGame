@@ -211,6 +211,7 @@
     <Compile Include="Helper\Westeros.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enum\Families.cs" />
+    <Compile Include="Models\FamilyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KingdomViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -288,6 +289,7 @@
     </Content>
     <Content Include="fonts\Gameofthrones.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\game-play.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -338,6 +340,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Welcome\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
+    <Content Include="Views\Map\_Objective.cshtml" />
+    <Content Include="Views\Map\_Attack.cshtml" />
+    <Content Include="Views\Map\_Battle.cshtml" />
+    <Content Include="Views\Map\_Distribute.cshtml" />
+    <Content Include="Views\Map\_MoveTroops.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

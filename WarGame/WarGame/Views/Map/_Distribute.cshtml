@@ -1,0 +1,30 @@
+﻿<div class="modal fade" id="modal-distribui" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title distribute name-region">Distribuir tropas</h4>
+                <main class="inline-block-centralizado" style="margin-bottom:10px">
+                    <div class="container qtd-tropas">
+                        <h6 style="text-align:center">quantidade de tropas disponiveis:</h6>
+                        <p id="qtd-tropas" class="distribute"><p>
+                    </div>
+                </main>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input class="hidden" id="region-id" value=""/>
+                </div>
+                <div id="distribuir-tropas">
+                    <h6>quantidade de tropas:</h6>
+                    <select class="form-control distribute" id="troops-available">
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="add-troops-btn">adicionar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
