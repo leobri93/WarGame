@@ -39,6 +39,11 @@ namespace WarGame.Models
             get { return family; }
             set { family = value; }
         }
+
+        public ObjectiveModel Objective
+        {
+            get { return objective; }
+        }
     }
    
 }
