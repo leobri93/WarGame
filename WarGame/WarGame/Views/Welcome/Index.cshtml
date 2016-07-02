@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Família:</label>
                         <div class="col-md-10">
-                            @Html.DropDownListFor(p => p.Family, (IEnumerable<SelectListItem>)ViewBag.Families, new { @class = "form-control" })
+                            @Html.DropDownListFor(p => p.Family.Name, (IEnumerable<SelectListItem>)ViewBag.Families, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row" style="text-align:center">

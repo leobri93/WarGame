@@ -15,11 +15,33 @@ namespace WarGame.Controllers
     {
 
         private static readonly List<RegionViewModel> regions = Westeros.Map();
+        private static List<PlayerViewModel> players;
 
         public ActionResult Index(PlayerViewModel player)
         {
+
+            var obj = new Objective();
+            var myFamily = player.Family.Name;
+            var myObj = obj.RafflingObjectives();
+
+            players = new List<PlayerViewModel>();
+            players.Add(new PlayerViewModel(player.Name, new FamilyViewModel(myFamily), myObj));
+
+            var families = Enum.GetNames(typeof(Family)).Select(e => new SelectListItem { Text = e });
+
+            var firstFamily = families.First(x => x.Text != myFamily).Text;
+            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(firstFamily), obj.RafflingObjectives()));
+
+            var secondFamily = families.First(x => x.Text != myFamily & x.Text != firstFamily).Text;
+            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(secondFamily), obj.RafflingObjectives()));
+
+            Distributions.regionsDistribution(players, regions);
+
             ViewBag.Name = player.Name;
-            ViewBag.Familiy = player.Family;
+            ViewBag.Familiy = player.Family.Name;
+            ViewBag.Objective = myObj.description;
+            ViewBag.Src = players.First().Family.Src;
+
             return View();
         }
 
@@ -28,33 +50,6 @@ namespace WarGame.Controllers
         public JsonResult Regions()
         {
             return Json(regions, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public ActionResult DoSubmit(string name, string family)
-        {
-            Objective obj = new Objective();
-
-            ObjectiveModel objModel = obj.RafflingObjectives();
-
-            PlayerViewModel player = new PlayerViewModel(name, family, objModel);
-
-            bool success;
-            if (player != null)
-            {
-                success = true;
-            }
-            else
-            {
-                success = false;
-            }
-
-            return Content(JsonConvert.SerializeObject(new
-            {
-                Success = success,
-                PlayerInfo = player
-
-            }));
         }
 
         [HttpGet]
@@ -126,12 +121,12 @@ namespace WarGame.Controllers
         public JsonResult DistributeTroops(string rid, string pid)
         {
             var region = regions.Region(rid);
-
+            var player = players.First(p => p.Id == pid);
             if (region.Player.Id.Equals(pid))
             {
-                var troopsToDistribute = "Número de tropas para distribuição";
+                var troopsToDistribute = Distributions.troopsDistribution(player, regions);
                 Response.StatusCode = (int)HttpStatusCode.OK;
-                return Json(new { troopsToDistribute = troopsToDistribute }, JsonRequestBehavior.AllowGet);
+                return Json(new { name = region.Name, troopsToDistribute = troopsToDistribute }, JsonRequestBehavior.AllowGet);
             }
 
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -145,7 +140,7 @@ namespace WarGame.Controllers
             var region = regions.Region(rid);
             region.Troops += troops;           
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { troops = region.Troops });
+            return Json(new { name = region.Name, troops = region.Troops });
         }
 
         [HttpGet]

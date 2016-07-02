@@ -38,7 +38,12 @@
             type: "GET",
             dataType: "json",
             success: function (data) {
-                /* ABRIR MODAL DE DISTRIBUIÇÃO DE TROPAS */
+                $(".distribute").empty();
+                $("#qtd-tropas").append(data.troopsToDistribute);
+                $("#name-region").append(data.name);
+                $("#region-id").val(rid);
+                for (var i = data.troopsToDistribute; i > 0; i--) $("#troops-available").append('<option>' + i + '</option>');
+                $("#modal-distribui").modal('show');
             },
             error: function (data) {
                 debugger;
@@ -46,14 +51,19 @@
         });
     };
 
-    var add_troops = function (rid, troops, text) {
+    var add_troops = function (rid, troops, stage) {
         $.ajax({
             url: "maps/add-troops",
             type: "POST",
             dataType: "json",
             data: {rid: rid, troops: troops },
             success: function (data) {
-                text.text = data.troops;
+                var child = stage.getChildByName(data.name + " Text");
+                child.text = data.troops;
+                if (child.text > 9) {
+                    child.x -= 4;
+                }
+                $("#modal-distribui").modal('hide');
             },
             error: function (data) {
                 debugger;

@@ -14,13 +14,13 @@ namespace WarGame.Helper
         /// </summary>
         /// <param name="players"></param>
         /// <param name="regions"></param>
-        public void regionsDistribution(List<PlayerViewModel> players, List<RegionViewModel> regions)
+        public static void regionsDistribution(List<PlayerViewModel> players, List<RegionViewModel> regions)
         {
             int numberOfterritories = regions.Count / players.Count;
 
             Random rnd = new Random();
 
-            List<RegionViewModel> auxRegions = regions;
+            List<RegionViewModel> auxRegions = new List<RegionViewModel>(regions);
             bool completed = false;
 
             int playerCount = players.Count;
@@ -57,7 +57,7 @@ namespace WarGame.Helper
         /// </summary>
         /// <param name="player"></param>
         /// <returns>Number of troops the player will be able to use based on the number of regions he owns</returns>
-        public int troopsDistribution (PlayerViewModel player, List<RegionViewModel> regions)
+        public static int troopsDistribution (PlayerViewModel player, List<RegionViewModel> regions)
         {
             int numberOfTroops;
 

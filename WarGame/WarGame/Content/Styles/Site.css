@@ -2,6 +2,7 @@
     font-family: Gameofthrones;
     src: url('../../fonts/Gameofthrones.ttf');
 }
+
 h1,h2,h3,h4,h5,h6 {
      font-family: Gameofthrones;
      
@@ -30,7 +31,6 @@ h1.welcome-title {
 	background-size: cover;
     width:100%;
     height:100%;
-    
 }
 
 .content {
