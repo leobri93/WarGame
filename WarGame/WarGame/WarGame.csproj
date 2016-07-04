@@ -209,6 +209,7 @@
     <Compile Include="Helper\Region.cs" />
     <Compile Include="Helper\Search.cs" />
     <Compile Include="Helper\Westeros.cs" />
+    <Compile Include="TroopsDistribution.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enum\Families.cs" />
     <Compile Include="Models\FamilyViewModel.cs" />

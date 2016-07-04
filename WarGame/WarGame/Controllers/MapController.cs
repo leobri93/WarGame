@@ -8,6 +8,7 @@ using WarGame.Models;
 using WarGame.Models.Enum;
 using WarGame.Helper;
 using System.Net;
+using WarGame.IA;
 
 namespace WarGame.Controllers
 {
@@ -41,6 +42,9 @@ namespace WarGame.Controllers
             ViewBag.Familiy = player.Family.Name;
             ViewBag.Objective = myObj.description;
             ViewBag.Src = players.First().Family.Src;
+            //testando
+            TroopsDistribution tia = new TroopsDistribution();
+            tia.IADistributionTroops(players[1], regions);
 
             return View();
         }
