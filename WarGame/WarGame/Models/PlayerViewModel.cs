@@ -39,6 +39,7 @@ namespace WarGame.Models
             get { return family; }
             set { family = value; }
         }
+
     }
    
 }
