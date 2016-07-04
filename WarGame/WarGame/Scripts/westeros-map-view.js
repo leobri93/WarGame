@@ -2,7 +2,6 @@
 
     var stage = new createjs.Stage("westeros-map");
     var _game_play = game_play;
-    var _game_loop = game_loop;
     var scale = 0.3;
     var alpha = 0.8;
     var turn_name = ["Distribuição de tropas", "Ataque", "Mover tropas"];

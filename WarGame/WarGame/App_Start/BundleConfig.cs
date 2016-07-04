@@ -20,7 +20,6 @@ namespace WarGame
 
             bundles.Add(new ScriptBundle("~/bundles/westeros-map").Include(
                     "~/Scripts/game-play.js",
-                    "~/Scripts/game-loop.js",
                     "~/Scripts/westeros-map-view.js"
                 ));
 
