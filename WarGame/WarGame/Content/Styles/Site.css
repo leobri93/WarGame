@@ -3,10 +3,9 @@
     src: url('../../fonts/Gameofthrones.ttf');
 }
 #objective-icon {
-    border-radius:50px;
-    box-shadow:4px 4px 4px #000;
     cursor:pointer;
 }
+
 h1,h2,h3,h4,h5,h6 {
      font-family: Gameofthrones;
 }
