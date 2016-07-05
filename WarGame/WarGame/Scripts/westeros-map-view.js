@@ -62,11 +62,17 @@
         var bitmap = new createjs.Bitmap(new Image().src = element.RegionsPosition.Src);
         var shape = new createjs.Shape();
         var text = new createjs.Text(1, 'bold 15px Helvica', '#000');
+        var tooltipText = new createjs.Text("", 'bold 15px Helvica', '#fff');
 
         text.align = "center";
         text.x = element.RegionsPosition.TroopsX - 4.5;
         text.y = element.RegionsPosition.TroopsY - 8;
         text.name = element.Name + " Text";
+        
+        tooltipText.align = "center";
+        tooltipText.x = element.RegionsPosition.TroopsX - 40;
+        tooltipText.y = element.RegionsPosition.TroopsY + 5;
+        tooltipText.zIndex = 1111100;
 
         shape.graphics.beginFill(element.Player.Family.Color);
         shape.graphics.beginStroke("#000");
@@ -100,15 +106,17 @@
         bitmap.addEventListener("mouseover",  function () {
             bitmap.alpha = 1;
             bitmap.shadow = new createjs.Shadow("#666", 4, 4, 15);
+            tooltipText.text = element.Name;
         });
         bitmap.addEventListener("mouseout", function () {
             bitmap.alpha = alpha;
             bitmap.shadow = shadow;
+            tooltipText.text = "";
         });
         bitmap.cursor = "pointer";
         bitmap.name = element.Name + " Bitmap";
         stage.enableMouseOver();
-        stage.addChild(bitmap, shape, text);
+        stage.addChild(bitmap, shape, text, tooltipText);
     };
 
     var buildMap = function () {
