@@ -60,5 +60,60 @@ namespace WarGame.Helper
 
             return returnObj;
         }
+
+        /// <summary>
+        /// This method is used to verify if the objective associated to the player is valid or not.
+        /// We have the scenario that a player must destroy a family but this family is not in the game.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>True if the family exists in the game, false otherwise</returns>
+        public bool VerifyFamilyOnObjective(int id, List<PlayerViewModel> players)
+        {
+            
+            bool result = false;
+
+            switch (id)
+            {
+                case 1:
+                    result = SearchFamilyOnPlayers("Tyrell", players);
+                    break;
+                case 2:
+                    result = SearchFamilyOnPlayers("Targaryen", players);
+                    break;
+                case 3:
+                    result = SearchFamilyOnPlayers("GreyJoy", players);
+                    break;
+                case 4:
+                    result = SearchFamilyOnPlayers("Lannister", players);
+                    break;
+                case 5:
+                    result = SearchFamilyOnPlayers("Baratheon", players);
+                    break;
+                case 6:
+                    result = SearchFamilyOnPlayers("Stark", players);
+                    break;
+
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Search on players list to verify if the given family is on the game
+        /// </summary>
+        /// <param name="familyName"></param>
+        /// <param name="players"></param>
+        /// <returns></returns>
+        private bool SearchFamilyOnPlayers(string familyName, List<PlayerViewModel> players)
+        {
+            IEnumerable<PlayerViewModel> aux;
+
+            aux = players.Where(x => x.Family.Equals(familyName));
+
+            if (aux == null || aux.Count() == 0)
+                return false;
+            else
+                return true;
+        }
     }
 }
