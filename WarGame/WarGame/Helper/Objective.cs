@@ -12,12 +12,12 @@ namespace WarGame.Helper
 
         public Objective()
         {
-            objectives.Add(new ObjectiveModel(1, "Destruir totalmente o exercito Tyrell"));
-            objectives.Add(new ObjectiveModel(2, "Destruir totalmente o exercito Targaryen"));
-            objectives.Add(new ObjectiveModel(3, "Destruir totalmente o exercito Greyjoy"));
-            objectives.Add(new ObjectiveModel(4, "Destruir totalmente o exercito Lannister"));
-            objectives.Add(new ObjectiveModel(5, "Destruir totalmente o exercito Baratheon"));
-            objectives.Add(new ObjectiveModel(6, "Destruir totalmente o exercito Stark"));
+            objectives.Add(new ObjectiveModel(1, "Destruir totalmente o exercito Tyrell, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(2, "Destruir totalmente o exercito Targaryen, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(3, "Destruir totalmente o exercito Greyjoy, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(4, "Destruir totalmente o exercito Lannister, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(5, "Destruir totalmente o exercito Baratheon, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(6, "Destruir totalmente o exercito Stark, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
             objectives.Add(new ObjectiveModel(7, "Conquistar na totalidade a The Riverlands e The Reach"));
             objectives.Add(new ObjectiveModel(8, "Conquistar 24 territorios a sua escolha"));
             objectives.Add(new ObjectiveModel(9, "Conquistar na totalidade a The North e Dorne"));
@@ -59,6 +59,61 @@ namespace WarGame.Helper
             }
 
             return returnObj;
+        }
+
+        /// <summary>
+        /// This method is used to verify if the objective associated to the player is valid or not.
+        /// We have the scenario that a player must destroy a family but this family is not in the game.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>True if the family exists in the game, false otherwise</returns>
+        public bool VerifyFamilyOnObjective(int id, List<PlayerViewModel> players)
+        {
+            
+            bool result = false;
+
+            switch (id)
+            {
+                case 1:
+                    result = SearchFamilyOnPlayers("Tyrell", players);
+                    break;
+                case 2:
+                    result = SearchFamilyOnPlayers("Targaryen", players);
+                    break;
+                case 3:
+                    result = SearchFamilyOnPlayers("GreyJoy", players);
+                    break;
+                case 4:
+                    result = SearchFamilyOnPlayers("Lannister", players);
+                    break;
+                case 5:
+                    result = SearchFamilyOnPlayers("Baratheon", players);
+                    break;
+                case 6:
+                    result = SearchFamilyOnPlayers("Stark", players);
+                    break;
+
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Search on players list to verify if the given family is on the game
+        /// </summary>
+        /// <param name="familyName"></param>
+        /// <param name="players"></param>
+        /// <returns></returns>
+        private bool SearchFamilyOnPlayers(string familyName, List<PlayerViewModel> players)
+        {
+            IEnumerable<PlayerViewModel> aux;
+
+            aux = players.Where(x => x.Family.Equals(familyName));
+
+            if (aux == null || aux.Count() == 0)
+                return false;
+            else
+                return true;
         }
     }
 }
