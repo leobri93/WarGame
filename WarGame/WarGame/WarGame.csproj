@@ -347,6 +347,8 @@
     <Content Include="Views\Map\_Distribute.cshtml" />
     <Content Include="Views\Map\_MoveTroops.cshtml" />
     <Content Include="Views\Map\_Error.cshtml" />
+    <Content Include="Views\Map\_Label.cshtml" />
+    <Content Include="Views\Map\_Bonus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

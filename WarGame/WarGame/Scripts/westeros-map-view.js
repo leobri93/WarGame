@@ -162,6 +162,13 @@
             $("#modal-objetivo").modal("show");
         });
 
+        $("#label").on("click", function () {
+            $("#modal-label").modal("show");
+        });
+
+        $("#bonus").on("click", function () {
+            $("#modal-bonus").modal("show");
+        });
     });
 
 }();
