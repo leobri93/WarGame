@@ -9,10 +9,12 @@ namespace WarGame.Models
     {
         private string id;
         private string name;
-        private string family;
+        private FamilyViewModel family;
         private ObjectiveModel objective { get; set; }
 
-        public PlayerViewModel(string name, string family, ObjectiveModel objective) 
+        public PlayerViewModel() { }
+
+        public PlayerViewModel(string name, FamilyViewModel family, ObjectiveModel objective) 
         {
             id = Guid.NewGuid().ToString("N");
             this.name = name;
@@ -32,11 +34,12 @@ namespace WarGame.Models
             set { name = value; }
         }
 
-        public string Family
+        public FamilyViewModel Family
         {
             get { return family; }
             set { family = value; }
         }
+
     }
    
 }

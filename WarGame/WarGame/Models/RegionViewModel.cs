@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WarGame.Helper;
+using System.Linq;
 
 namespace WarGame.Models
 {
@@ -26,13 +27,6 @@ namespace WarGame.Models
             id = Guid.NewGuid().ToString("N");
             this.name = name;
             this.kingdom = kingdom;
-
-            Objective obj = new Objective();
-            
-            //Raffling an objective
-            ObjectiveModel objModel = obj.RafflingObjectives();
-
-            player = new PlayerViewModel("Computador", "Stark", objModel);
             troops = 1;
             this.regionPosition = regionPosition;
         }
@@ -74,6 +68,11 @@ namespace WarGame.Models
             this.frontiers = frontiers;
         }
 
+        public List<RegionViewModel> Frontiers() 
+        {
+            return frontiers;
+        }
+
         public RegionViewModel CheckFrontier(RegionViewModel region)
         {
             var index = frontiers.BinarySearch(region);
@@ -82,6 +81,46 @@ namespace WarGame.Models
                 return region.frontiers[index];
             }
             return null;
+        }
+
+        public List<RegionViewModel> EnemyFrontiers(string id)
+        {
+            if (Player.Id.Equals(id))
+            {
+                return frontiers.Where(r => !r.Player.Id.Equals(id)).ToList();
+            }
+            return new List<RegionViewModel>();
+        }
+
+        public List<RegionViewModel> FriendlyFrontiers(string id) 
+        {
+            if (Player.Id.Equals(id))
+            {
+                return frontiers.Where(r => r.Player.Id.Equals(id)).ToList();
+            }
+            return new List<RegionViewModel>();
+        }
+
+        public int[] Attack(RegionViewModel defense , int[] aplayer, int[] dplayer) 
+        {
+            var attackLostTroops = 0;
+            var defenseLostTroops = 0;
+            for (var i = 0; i < 3; i++)
+            {
+                if (aplayer.Length > i && dplayer.Length > i)
+                {
+                    if (aplayer[i] <= dplayer[i])
+                    {
+                        attackLostTroops++;
+                        --troops;
+                    } else
+                    {
+                        defenseLostTroops++;
+                        --defense.Troops;
+                    }
+                }
+            }
+            return new int[] { attackLostTroops, defenseLostTroops };
         }
 
     }
