@@ -12,12 +12,12 @@ namespace WarGame.Helper
 
         public Objective()
         {
-            objectives.Add(new ObjectiveModel(1, "Destruir totalmente o exercito Tyrell"));
-            objectives.Add(new ObjectiveModel(2, "Destruir totalmente o exercito Targaryen"));
-            objectives.Add(new ObjectiveModel(3, "Destruir totalmente o exercito Greyjoy"));
-            objectives.Add(new ObjectiveModel(4, "Destruir totalmente o exercito Lannister"));
-            objectives.Add(new ObjectiveModel(5, "Destruir totalmente o exercito Baratheon"));
-            objectives.Add(new ObjectiveModel(6, "Destruir totalmente o exercito Stark"));
+            objectives.Add(new ObjectiveModel(1, "Destruir totalmente o exercito Tyrell, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(2, "Destruir totalmente o exercito Targaryen, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(3, "Destruir totalmente o exercito Greyjoy, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(4, "Destruir totalmente o exercito Lannister, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(5, "Destruir totalmente o exercito Baratheon, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
+            objectives.Add(new ObjectiveModel(6, "Destruir totalmente o exercito Stark, caso esse exercito nao esteja em jogo conquistar 24 territorios"));
             objectives.Add(new ObjectiveModel(7, "Conquistar na totalidade a The Riverlands e The Reach"));
             objectives.Add(new ObjectiveModel(8, "Conquistar 24 territorios a sua escolha"));
             objectives.Add(new ObjectiveModel(9, "Conquistar na totalidade a The North e Dorne"));
