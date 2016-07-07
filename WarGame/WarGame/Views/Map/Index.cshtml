@@ -4,10 +4,12 @@
 @Html.Partial("_MoveTroops")
 @Html.Partial("_Objective")
 @Html.Partial("_Error")
+@Html.Partial("_InfoGeral")
+
 
 <div class="tabuleiro">
     <div class="row">
-        <div class="col-md-4"><h5 class="head"><span id="round">1º Round</span></h5></div>
+        <div class="col-md-4"><h5 class="head"><span id="round">1ï¿½ Round</span></h5></div>
         <div class="col-md-4"><h5 class="head">Jogador: <span id="player-name"></span></h5></div>
         <div class="col-md-4 head"><input id="player-id" class="hidden" value="" /></div>
     </div>
@@ -35,12 +37,18 @@
                     <hr />
                     <div class="container">
                         <main class="inline-block-centralizado">
-                            <span class="turn-name">Distribuição de tropas</span>
+                            <span class="turn-name">DistribuiÃ§Ã£o de tropas</span>
                             <input type="text" class="form-control text-center" id="troops-to-distributed" disabled/>
+                            <span></span>
                         </main>
                     </div>   
-                    <hr />           
-                    <main class="inline-block-centralizado" style="margin-bottom:10px">
+                    <hr />
+                    <!--modal legenda-->
+                    <main class="inline-block-centralizado">
+                        <button type="button" class="btn btn-default" id="info-geral" title="Legenda">InformaÃ§Ãµes gerais</button>
+                    </main>
+                    <hr />
+                   <main class="inline-block-centralizado" style="margin-bottom:5px">
                         <button type="button" class="btn btn-default" id="pass-round">PASSAR RODADA</button>
                     </main>
                 </div>

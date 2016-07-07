@@ -162,6 +162,10 @@
             $("#modal-objetivo").modal("show");
         });
 
+        $("#info-geral").on("click", function () {
+            $("#modal-info-geral").modal("show");
+        });
+
     });
 
 }();

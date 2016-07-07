@@ -1,0 +1,73 @@
+﻿<div class="modal fade" id="modal-info-geral" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Informações</h5>
+            </div>
+            
+                <div id="container-lado-a-lado">
+                    <h4>Legenda</h4>
+                    <main style="margin-bottom:10px">
+                        <block>Cor</block>
+                        <block>Familia</block>
+                    </main>
+                    <main style="margin-bottom:20px">
+                        <block id="cor-familia" style="background-color:@ViewBag.ColorPlayer1"></block>
+                        <block>@ViewBag.Player1</block>
+                    </main>
+                    <main style="margin-bottom:20px">
+                        <block id="cor-familia" style="background-color:@ViewBag.ColorPlayer2"></block>
+                        <block>@ViewBag.Player2</block>
+                    </main>
+                    <main style="margin-bottom:20px">
+                        <block id="cor-familia" style="background-color:@ViewBag.ColorPlayer3"></block>
+                        <block>@ViewBag.Player3</block>
+                    </main>
+                </div>
+                
+                <div id="container-lado-a-lado">
+                    <h4>Bonus de reino</h4>
+                    <main style="margin-bottom:10px">
+                        <block>Dorne</block>
+                        <block>+@ViewBag.BonusDorne</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Crownlands</block>
+                        <block>+@ViewBag.BonusTheCrownlands</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Iron Islands</block>
+                        <block>+@ViewBag.BonusTheIronIslands</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The North</block>
+                        <block>+@ViewBag.BonusTheNorth</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Reach</block>
+                        <block>+@ViewBag.BonusTheReach</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Riverlands</block>
+                        <block>+@ViewBag.BonusTheRiverlands</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Stormlands</block>
+                        <block>+@ViewBag.BonusTheStormlands</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Vale Of Arryn</block>
+                        <block>+@ViewBag.BonusTheValeOfArryn</block>
+                    </main>
+                    <main style="margin-bottom:10px">
+                        <block>The Westerlands</block>
+                        <block>+@ViewBag.BonusTheWesterlands</block>
+                    </main>
+                </div>
+            
+            <div class="modal-footer custom">
+                <button type="button" class="btn btn-block btn-modal btn-danger" data-dismiss="modal">fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
