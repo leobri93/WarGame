@@ -10,7 +10,7 @@ namespace WarGame.Models
         private string id;
         private string name;
         private FamilyViewModel family;
-        private ObjectiveModel objective { get; set; }
+        public ObjectiveModel objective { get; set; }
 
         public PlayerViewModel() { }
 
