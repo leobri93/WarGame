@@ -4,8 +4,8 @@
 @Html.Partial("_MoveTroops")
 @Html.Partial("_Objective")
 @Html.Partial("_Error")
-@Html.Partial("_Label")
-@Html.Partial("_Bonus")
+@Html.Partial("_InfoGeral")
+
 
 <div class="tabuleiro">
     <div class="row">
@@ -45,14 +45,10 @@
                     <hr />
                     <!--modal legenda-->
                     <main class="inline-block-centralizado">
-                        <button type="button" class="btn btn-default" id="label" title="Legenda">Legenda</button>
+                        <button type="button" class="btn btn-default" id="info-geral" title="Legenda">Informações gerais</button>
                     </main>
                     <hr />
-                    <main class="inline-block-centralizado">
-                        <button type="button" class="btn btn-default" id="bonus" title="bonus de tropas">Bonus</button>
-                    </main>
-                    <hr />
-                    <main class="inline-block-centralizado" style="margin-bottom:5px">
+                   <main class="inline-block-centralizado" style="margin-bottom:5px">
                         <button type="button" class="btn btn-default" id="pass-round">PASSAR RODADA</button>
                     </main>
                 </div>

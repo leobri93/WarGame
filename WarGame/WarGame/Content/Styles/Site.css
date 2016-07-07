@@ -80,6 +80,13 @@ h1.welcome-title {
     -webkit-border-radius: 7px;
    
 }
+#container-lado-a-lado {
+    float:left;
+    padding-left: 30px;
+}
+hr.VerticalLine {
+  transform: rotate(90deg);
+}
 
 main div {
   background: black;

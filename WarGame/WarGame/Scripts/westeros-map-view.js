@@ -162,13 +162,10 @@
             $("#modal-objetivo").modal("show");
         });
 
-        $("#label").on("click", function () {
-            $("#modal-label").modal("show");
+        $("#info-geral").on("click", function () {
+            $("#modal-info-geral").modal("show");
         });
 
-        $("#bonus").on("click", function () {
-            $("#modal-bonus").modal("show");
-        });
     });
 
 }();
