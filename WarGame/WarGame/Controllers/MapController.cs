@@ -38,12 +38,36 @@ namespace WarGame.Controllers
 
             Distributions.regionsDistribution(players, regions);
 
+            Disponibilizar_bonus();
             ViewBag.Name = player.Name;
             ViewBag.Familiy = player.Family.Name;
             ViewBag.Objective = myObj.description;
             ViewBag.Src = players.First().Family.Src;
+           
+            ViewBag.Player1 = players[0].Family.Name;
+            ViewBag.ColorPlayer1 = players[0].Family.Color;
+            ViewBag.Player2 = players[1].Family.Name; 
+            ViewBag.ColorPlayer2 = players[1].Family.Color;
+            ViewBag.Player3 = players[2].Family.Name; 
+            ViewBag.ColorPlayer3 = players[2].Family.Color;
+            //testando
+            TroopsDistribution tia = new TroopsDistribution();
+            tia.IADistributionTroops(players[1], regions);
 
             return View();
+        }
+        public void Disponibilizar_bonus()
+        {
+            ViewBag.BonusDorne = Kingdom.Instance.Dorne.Bonus;
+            ViewBag.BonusTheCrownlands = Kingdom.Instance.TheCrownlands.Bonus;
+            ViewBag.BonusTheIronIslands = Kingdom.Instance.TheIronIslands.Bonus;
+            ViewBag.BonusTheNorth = Kingdom.Instance.TheNorth.Bonus;
+            ViewBag.BonusTheReach = Kingdom.Instance.TheReach.Bonus;
+            ViewBag.BonusTheRiverlands = Kingdom.Instance.TheRiverlands.Bonus;
+            ViewBag.BonusTheStormlands = Kingdom.Instance.TheStormlands.Bonus;
+            ViewBag.BonusTheValeOfArryn = Kingdom.Instance.TheValeOfArryn.Bonus;
+            ViewBag.BonusTheWesterlands = Kingdom.Instance.TheWesterlands.Bonus;
+
         }
 
         [HttpGet]

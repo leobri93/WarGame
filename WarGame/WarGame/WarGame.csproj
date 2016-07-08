@@ -210,7 +210,7 @@
     <Compile Include="Helper\Search.cs" />
     <Compile Include="Helper\VictoryRule.cs" />
     <Compile Include="Helper\Westeros.cs" />
-    <Compile Include="IA\Attack.cs" />
+    <Compile Include="TroopsDistribution.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enum\Families.cs" />
     <Compile Include="Models\FamilyViewModel.cs" />
@@ -232,6 +232,7 @@
     <Content Include="Content\Images\objective-icon.png" />
     <Content Include="Content\Images\Stark.png" />
     <Content Include="Content\Images\targaryen.png" />
+    <Content Include="Content\Images\trophy-icon.png" />
     <Content Include="Content\Images\tyrell.png" />
     <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
     <Content Include="Content\Images\Westeros\Dorne\sandstone.png" />
@@ -348,6 +349,7 @@
     <Content Include="Views\Map\_Distribute.cshtml" />
     <Content Include="Views\Map\_MoveTroops.cshtml" />
     <Content Include="Views\Map\_Error.cshtml" />
+    <Content Include="Views\Map\_InfoGeral.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
