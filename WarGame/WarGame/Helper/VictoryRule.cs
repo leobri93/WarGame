@@ -5,238 +5,416 @@ using System.Web;
 using WarGame.Models;
 namespace WarGame.Helper
 {
-    public class VictoryRule
+    public static class VictoryRule
     {
-        public static bool regrasDeVitoria(this PlayerViewModel player, List<RegionViewModel> regions)
+        public static bool regrasDeVitoria(this PlayerViewModel player, List<RegionViewModel> regions, List<PlayerViewModel> players)
         {
-            int numberOfRegionsDominatedByPlayer = 0;
-            if (player.Objective.Equals("24 territorios"))
+            int checkDomination1 =0, checkDomination2 = 0, checkDomination3 = 0 ;
+            if (player.Objective.id == 8)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    numberOfRegionsDominatedByPlayer += 1;
-                }
-                if (numberOfRegionsDominatedByPlayer >= 24)
+                int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                
+                if (regionsDominatedByPlayer >= 24)
                 {
                     return true;
                 }
                 return false;
             }
-            if (player.Objective.Equals("18 territorios"))
+            if (player.Objective.id == 11)
             {
-                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    numberOfRegionsDominatedByPlayer += 1;
-                }
-                var regionsWith1Troop = regionsDominatedByPlayer.Where(x => x.Troops == 1);
-                if (numberOfRegionsDominatedByPlayer >= 18 && regionsWith1Troop == null)
+                int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                var regionsDominated = regions.Where(x => x.Player.Id == player.Id);
+                var regionsWith1Troop = regionsDominated.Where(x => x.Troops == 1);
+                if (regionsDominatedByPlayer >= 18 && regionsWith1Troop == null)
                 {
                     return true;
                 }
                 return false;
             }
-            if (player.Objective.Equals("EXÉRCITO STARK"))
-            {
-                var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name == "STARK");
+             if (player.Objective.id == 6)
+             {
+                 Objective obj = new Objective();
+                 if (obj.VerifyFamilyOnObjective(player, players))
+                 {
+                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Stark"));
 
-                if (regionsDominatedByObjective == null)
-                {
-                    return true;
-                }
-                return false;
-            }
-            if (player.Objective.Equals("EXÉRCITO BARATHEON"))
-            {
-                var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name == "BARATHEON");
+                     if (regionsDominatedByObjective == null)
+                     {
+                         return true;
+                     }
+                 } else
+                 {
+                    int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
 
-                if (regionsDominatedByObjective == null)
-                {
-                    return true;
-                }
-                return false;
-            }
-            if (player.Objective.Equals("EXÉRCITO LANNISTER"))
-            {
-                var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name == "LANNISTER");
+                    if (regionsDominatedByPlayer >= 24)
+                    {
+                        return true;
+                    }
+                 }
+                 return false;
+             }
+             if (player.Objective.id == 5)
+             {
+                 if (player.Objective.VerifyFamilyOnObjective(player, players))
+                 {
+                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Baratheon"));
 
-                if (regionsDominatedByObjective == null)
-                {
-                    return true;
+                     if (regionsDominatedByObjective == null)
+                     {
+                         return true;
+                     }
+                 }
+                 else
+                 {
+                     int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                
+                     if (regionsDominatedByPlayer >= 24)
+                     {
+                         return true;
+                     }
                 }
                 return false;
-            }
-            if (player.Objective.Equals("EXÉRCITO GREYJOY"))
-            {
-                var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name == "GREYJOY");
+             }
+             if (player.Objective.id == 4)
+             {
+                 if (player.Objective.VerifyFamilyOnObjective(player, players))
+                 {
+                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Lannister"));
 
-                if (regionsDominatedByObjective == null)
-                {
-                    return true;
-                }
-                return false;
-            }
-            if (player.Objective.Equals("EXÉRCITO TARGARYEN"))
-            {
-                var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name == "TARGARYEN");
+                     if (regionsDominatedByObjective == null)
+                     {
+                         return true;
+                     }
+                 }
+                 else
+                 {
+                     int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                
+                     if (regionsDominatedByPlayer >= 24)
+                     {
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             if (player.Objective.id == 3)
+             {
 
-                if (regionsDominatedByObjective == null)
-                {
-                    return true;
-                }
-                return false;
-            }
-            if (player.Objective.Equals("EXÉRCITO TYRELL"))
-            {
-                var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name == "TYRELL");
+                 if (player.Objective.VerifyFamilyOnObjective(player, players))
+                 {
+                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Greyjoy"));
 
-                if (regionsDominatedByObjective == null)
-                {
-                    return true;
+                     if (regionsDominatedByObjective == null)
+                     {
+                         return true;
+                     }
+                 }
+                 else
+                 {
+                     int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                
+                     if (regionsDominatedByPlayer >= 24)
+                     {
+                         return true;
+                     }
                 }
                 return false;
-            }
-            if (player.Objective.Equals("DORNE, THE WESTERLANDS E THE CROWLANDS"))
+             }
+             if (player.Objective.id == 2)
+             {
+                 if (player.Objective.VerifyFamilyOnObjective(player, players))
+                 {
+                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Targaryen"));
+
+                     if (regionsDominatedByObjective == null)
+                     {
+                         return true;
+                     }
+                 }
+                 else
+                 {
+                     int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                
+                     if (regionsDominatedByPlayer >= 24)
+                     {
+                         return true;
+                     }
+                }
+                return false;
+             }
+             if (player.Objective.id == 1)
+             {
+
+                 if (player.Objective.VerifyFamilyOnObjective(player, players))
+                 {
+                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Tyrell"));
+
+                     if (regionsDominatedByObjective == null)
+                     {
+                         return true;
+                     }
+                 }
+                 else
+                 {
+                      int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
+                
+                     if (regionsDominatedByPlayer >= 24)
+                     {
+                         return true;
+                     }
+                }
+                return false; 
+             }
+            if (player.Objective.id == 10)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                int checkDominationDorne = 0;
+
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("DORNE"))
+                    if (r.Kingdom.Name.Equals("Dorne"))
                     {
-                        checkDominationDorne += 1;
+                        checkDomination1 += 1;
                     }
                 }
-                int checkDominationWesterlands = 0;
+
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE WESTERLANDS"))
+                    if (r.Kingdom.Name.Equals("The Westerlands"))
                     {
-                        checkDominationWesterlands += 1;
+                        checkDomination2 += 1;
                     }
                 }
-                int checkDominationCrowlands = 0;
+
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("CROWLANDS"))
+                    if (r.Kingdom.Name.Equals("The Crownlands"))
                     {
-                        checkDominationCrowlands += 1;
+                        checkDomination3 += 1;
                     }
                 }
-                if (checkDominationDorne == 3 && checkDominationWesterlands == 5 && checkDominationCrowlands == 3)
+                if (checkDomination1 == 3 && checkDomination2 == 5 && checkDomination3 == 3)
                 {
                     return true;
                 }
                 return false;
             }
-            if (player.Objective.Equals("THE NORTH E THE STORMLANDS"))
+            if (player.Objective.id == 13)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                int checkDominationNorth = 0;
+                
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("NORTH"))
+                    if (r.Kingdom.Name.Equals("The North"))
                     {
-                        checkDominationNorth += 1;
+                        checkDomination1 += 1;
                     }
                 }
-                int checkDominationStormlands = 0;
+
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE STORMLANDS"))
+                    if (r.Kingdom.Name.Equals("The Stormlands"))
                     {
-                        checkDominationStormlands += 1;
+                        checkDomination2 += 1;
                     }
                 }
-                if (checkDominationNorth == 10 && checkDominationStormlands == 4)
+                if (checkDomination1 == 10 && checkDomination2 == 4)
                 {
                     return true;
                 }
                 return false;
             }
-            if (player.Objective.Equals("THE NORTH E DORNE"))
+            if (player.Objective.id == 9)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                int checkDominationDorne = 0;
+       
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("DORNE"))
+                    if (r.Kingdom.Name.Equals("Dorne"))
                     {
-                        checkDominationDorne += 1;
+                        checkDomination1 += 1;
                     }
                 }
-                int checkDominationNorth = 0;
+              
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE North"))
+                    if (r.Kingdom.Name.Equals("The North"))
                     {
-                        checkDominationNorth += 1;
+                        checkDomination2 += 1;
                     }
                 }
-                if (checkDominationDorne == 3 && checkDominationNorth == 10)
+                if (checkDomination1 == 3 && checkDomination2 == 10)
                 {
                     return true;
                 }
                 return false;
             }
-            if (player.Objective.Equals("THE RIVERLANDS E THE REACH"))
+            if (player.Objective.id == 7)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                int checkDominationRiverland = 0;
+                
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE RIVERLANDS"))
+                    if (r.Kingdom.Name.Equals("The Riverlands"))
                     {
-                        checkDominationRiverland += 1;
+                        checkDomination1 += 1;
                     }
                 }
-                int checkDominationReach = 0;
+                
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE REACH"))
+                    if (r.Kingdom.Name.Equals("The Reach"))
                     {
-                        checkDominationReach += 1;
+                        checkDomination2 += 1;
                     }
                 }
-                if (checkDominationRiverland == 4 && checkDominationReach == 5)
+                if (checkDomination1 == 4 && checkDomination2 == 5)
                 {
                     return true;
                 }
                 return false;
             }
-            if (player.Objective.Equals("THE REACH, THE VALE OF ARRYN E UM TERCEIRO"))
+            if (player.Objective.id == 12)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
-                int checkDominationReach = 0;
+                
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE REACH"))
+                    if (r.Kingdom.Name.Equals("The Reach"))
                     {
-                        checkDominationReach += 1;
+                        checkDomination1 += 1;
                     }
                 }
-                int checkDominationVale = 0;
+               
                 foreach (RegionViewModel r in regionsDominatedByPlayer)
                 {
-                    if (r.Kingdom.Name.Equals("THE VALE OF ARRYN"))
+                    if (r.Kingdom.Name.Equals("TheValeOfArryn"))
                     {
-                        checkDominationVale += 1;
+                        checkDomination2 += 1;
                     }
                 }
-                int checkDominationCrowlands = 0;
-                foreach (RegionViewModel r in regionsDominatedByPlayer)
-                {
-                    if (r.Kingdom.Equals("CROWLANDS"))
-                    {
-                        checkDominationCrowlands += 1;
-                    }
-                }
-                if (checkDominationReach == 5 && checkDominationVale == 6 && checkDominationCrowlands == 3)
+
+                if (checkDomination1 == 5 && checkDomination2 == 6 && checkDominationThird(player, regions))
                 {
                     return true;
                 }
                 return false;
+            }
+            if (player.Objective.id == 14)
+            {
+                var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
+
+                foreach (RegionViewModel r in regionsDominatedByPlayer)
+                {
+                    if (r.Kingdom.Name.Equals("The Crownlands"))
+                    {
+                        checkDomination1 += 1;
+                    }
+                }
+
+                foreach (RegionViewModel r in regionsDominatedByPlayer)
+                {
+                    if (r.Kingdom.Name.Equals("The Riverlands"))
+                    {
+                        checkDomination2 += 1;
+                    }
+                }
+
+                if (checkDomination1 == 3 && checkDomination2 == 4 && checkDominationThird(player, regions))
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
+        public static bool checkDominationThird(this PlayerViewModel player, List<RegionViewModel> regions)
+        {
+            var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
+            int checkDominationCrowlands = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Equals("The Crownlands"))
+                {
+                    checkDominationCrowlands += 1;
+                }
+            }
+            int checkDominationWesterlands = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("The Westerlands"))
+                {
+                    checkDominationWesterlands += 1;
+                }
+            }
+            int checkDominationDorne = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("Dorne"))
+                {
+                    checkDominationDorne += 1;
+                }
+            }
+            int checkDominationIron = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("The Iron Islands"))
+                {
+                    checkDominationIron += 1;
+                }
+            }
+            int checkDominationNorth = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("The North"))
+                {
+                    checkDominationNorth += 1;
+                }
+            }
+            int checkDominationRiverlands = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("The Riverlands"))
+                {
+                    checkDominationRiverlands += 1;
+                }
+            }
+            int checkDominationStormlands = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("The Stormlands"))
+                {
+                    checkDominationStormlands += 1;
+                }
+            }
+            int checkDominationReach = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("The Reach"))
+                {
+                    checkDominationReach += 1;
+                }
+            }
+            int checkDominationVale = 0;
+            foreach (RegionViewModel r in regionsDominatedByPlayer)
+            {
+                if (r.Kingdom.Name.Equals("TheValeOfArryn"))
+                {
+                    checkDominationVale += 1;
+                }
+            }
+            if (player.Objective.id == 14) { 
+                if (checkDominationReach == 5 || checkDominationDorne == 3 || checkDominationIron == 2 || checkDominationNorth == 10 || checkDominationVale == 6 || checkDominationStormlands == 4)
+                {
+                    return true;
+                }
+            }
+            if (player.Objective.id == 12)
+            {
+                if (checkDominationCrowlands == 3 || checkDominationDorne == 3 || checkDominationIron == 2 || checkDominationNorth == 10 || checkDominationRiverlands == 4 || checkDominationStormlands == 4)
+                {
+                    return true;
+                }
             }
             return false;
         }

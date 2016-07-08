@@ -22,12 +22,12 @@ namespace WarGame.Models
 
         private RegionPosition regionPosition;
 
-        public RegionViewModel(string name, KingdomViewModel kingdom, RegionPosition regionPosition)
+        public RegionViewModel(string name, KingdomViewModel kingdom, RegionPosition regionPosition, int troops = 1)
         {
             id = Guid.NewGuid().ToString("N");
             this.name = name;
             this.kingdom = kingdom;
-            troops = 1;
+            this.troops = troops;
             this.regionPosition = regionPosition;
         }
 
@@ -85,7 +85,11 @@ namespace WarGame.Models
 
         public List<RegionViewModel> EnemyFrontiers(string id)
         {
-            return frontiers.Where(r => r.Player.Id != id).ToList();
+            if (Player.Id.Equals(id))
+            {
+                return frontiers.Where(r => !r.Player.Id.Equals(id)).ToList();
+            }
+            return new List<RegionViewModel>();
         }
 
         public List<RegionViewModel> FriendlyFrontiers(string id) 

@@ -31,7 +31,7 @@ namespace WarGame.Controllers
             var families = Enum.GetNames(typeof(Family)).Select(e => new SelectListItem { Text = e });
 
             var firstFamily = families.First(x => x.Text != myFamily).Text;
-            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(firstFamily), new ObjectiveModel(8, "Conquistar 24 territorios a sua escolha")));
+            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(firstFamily), obj.RafflingObjectives()));
 
             var secondFamily = families.First(x => x.Text != myFamily & x.Text != firstFamily).Text;
             players.Add(new PlayerViewModel("Computador", new FamilyViewModel(secondFamily), obj.RafflingObjectives()));

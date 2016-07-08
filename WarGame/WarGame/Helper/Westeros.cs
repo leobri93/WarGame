@@ -151,6 +151,10 @@ namespace WarGame.Helper
 
             region.TheGreyCliffs.Frontiers(new List<RegionViewModel>
                 { region.Winterfell });
+            region.Harlaw.Frontiers(new List<RegionViewModel>
+                    { region.Pyke, region.TheTwins, region.CapeKrake, region.TheNeck });
+            region.Gulltown.Frontiers(new List<RegionViewModel>
+                    { region.SaltPans });
         }
 
         private static void AddRegions(List<RegionViewModel> regions, Region region) 

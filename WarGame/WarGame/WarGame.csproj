@@ -208,6 +208,7 @@
     <Compile Include="Helper\Objective.cs" />
     <Compile Include="Helper\Region.cs" />
     <Compile Include="Helper\Search.cs" />
+    <Compile Include="Helper\VictoryRule.cs" />
     <Compile Include="Helper\Westeros.cs" />
     <Compile Include="IA\Attack.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
