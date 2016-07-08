@@ -102,6 +102,9 @@ namespace WarGame.Helper
                     { region.Riberrun, region.Harrenhal, region.TheNeck, region.WestBale,
                       region.TheMountainsOfTheMoon, region.SaltPans, region.CrackclawPoint, region.Harlaw});
 
+            region.Harlaw.Frontiers(new List<RegionViewModel>
+                    { region.Pyke, region.TheTwins, region.CapeKrake, region.TheNeck });
+
             region.Pyke.Frontiers(new List<RegionViewModel>
                     { region.TheCrag, region.Harlaw });
 

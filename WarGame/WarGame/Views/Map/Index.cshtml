@@ -3,11 +3,14 @@
 @Html.Partial("_Distribute")
 @Html.Partial("_MoveTroops")
 @Html.Partial("_Objective")
+@Html.Partial("_Error")
 
 <div class="tabuleiro">
-    <header>
-        <h1>Warteros</h1>
-    </header>
+    <div class="row">
+        <div class="col-md-4"><h5 class="head"><span id="round">1º Round</span></h5></div>
+        <div class="col-md-4"><h5 class="head">Jogador: <span id="player-name"></span></h5></div>
+        <div class="col-md-4 head"><input id="player-id" class="hidden" value="" /></div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10">
@@ -18,34 +21,27 @@
                     <div id="cabecalho-jogador">
                         <h4 style="text-align:center">@ViewBag.Name @ViewBag.Familiy</h4>
                         <main class="inline-block-centralizado" style="margin-bottom:10px">
-                            <img src="@ViewBag.Src" width="100" alt="House Stark">
+                            <img src="@ViewBag.Src" width="100">
                         </main>
                     </div>
+                    <hr />
                     <div class="container">
                         <main class="inline-block-centralizado">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-objetivo" style="margin-bottom:20px;">Objetivo</button>
+                            <a id="objective" title="Objetivo">
+                                <img src="../Content/Images/objective-icon.png" width="50" id="objective-icon" />
+                            </a>
                         </main>
-                    </div>
-                    <div id="ataque">
-                        <div class="container">
-                            <main class="inline-block-centralizado">
-                                <button type="button" id="btn-ataque" onclick="criaRadioButtonAtaque()" class="btn btn-default" data-toggle="modal" data-target="#modal-ataque" style="margin-bottom:20px;">Atacar</button>
-                            </main>
-                        </div>
-                    </div>
+                    </div>     
+                    <hr />
                     <div class="container">
                         <main class="inline-block-centralizado">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-distribui" style="margin-bottom:20px;">Distribuir</button>
+                            <span class="turn-name">Distribuição de tropas</span>
+                            <input type="text" class="form-control text-center" id="troops-to-distributed" disabled/>
                         </main>
-                    </div>
-                    <div class="container">
-                        <main class="inline-block-centralizado">
-                            <button type="button" class="btn btn-default" onclick="criaRadioButtonMovimento()" data-toggle="modal" data-target="#modal-mov-tropas" style="margin-bottom:20px;">Movimentar</button>
-                        </main>
-
-                    </div>
+                    </div>   
+                    <hr />           
                     <main class="inline-block-centralizado" style="margin-bottom:10px">
-                        <button type="button" class="btn btn-default">Passar rodada</button>
+                        <button type="button" class="btn btn-default" id="pass-round">PASSAR RODADA</button>
                     </main>
                 </div>
             </div>

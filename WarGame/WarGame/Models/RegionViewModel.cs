@@ -94,7 +94,11 @@ namespace WarGame.Models
 
         public List<RegionViewModel> FriendlyFrontiers(string id) 
         {
-            return frontiers.Where(r => r.Player.Id.Equals(id)).ToList();
+            if (Player.Id.Equals(id))
+            {
+                return frontiers.Where(r => r.Player.Id.Equals(id)).ToList();
+            }
+            return new List<RegionViewModel>();
         }
 
         public int[] Attack(RegionViewModel defense , int[] aplayer, int[] dplayer) 
@@ -118,7 +122,6 @@ namespace WarGame.Models
             }
             return new int[] { attackLostTroops, defenseLostTroops };
         }
-
 
     }
 
