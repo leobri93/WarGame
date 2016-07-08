@@ -67,32 +67,34 @@ namespace WarGame.Helper
         /// </summary>
         /// <param name="player"></param>
         /// <returns>True if the family exists in the game, false otherwise</returns>
-        public bool VerifyFamilyOnObjective(int id, List<PlayerViewModel> players)
+        public bool VerifyFamilyOnObjective(PlayerViewModel currentPlayer, List<PlayerViewModel> players)
         {
             
             bool result = false;
 
-            switch (id)
+            switch (currentPlayer.objective.id)
             {
                 case 1:
-                    result = SearchFamilyOnPlayers("Tyrell", players);
+                    result = SearchFamilyOnPlayers("Tyrell", currentPlayer, players);
                     break;
                 case 2:
-                    result = SearchFamilyOnPlayers("Targaryen", players);
+                    result = SearchFamilyOnPlayers("Targaryen", currentPlayer, players);
                     break;
                 case 3:
-                    result = SearchFamilyOnPlayers("GreyJoy", players);
+                    result = SearchFamilyOnPlayers("GreyJoy", currentPlayer, players);
                     break;
                 case 4:
-                    result = SearchFamilyOnPlayers("Lannister", players);
+                    result = SearchFamilyOnPlayers("Lannister", currentPlayer, players);
                     break;
                 case 5:
-                    result = SearchFamilyOnPlayers("Baratheon", players);
+                    result = SearchFamilyOnPlayers("Baratheon", currentPlayer, players);
                     break;
                 case 6:
-                    result = SearchFamilyOnPlayers("Stark", players);
+                    result = SearchFamilyOnPlayers("Stark", currentPlayer, players);
                     break;
-
+                default:
+                    result = false;
+                    break;
             }
 
             return result;
@@ -104,16 +106,24 @@ namespace WarGame.Helper
         /// <param name="familyName"></param>
         /// <param name="players"></param>
         /// <returns></returns>
-        private bool SearchFamilyOnPlayers(string familyName, List<PlayerViewModel> players)
+        private bool SearchFamilyOnPlayers(string familyName, PlayerViewModel currentPlayer, List<PlayerViewModel> players)
         {
             IEnumerable<PlayerViewModel> aux;
 
             aux = players.Where(x => x.Family.Equals(familyName));
 
             if (aux == null || aux.Count() == 0)
+            {
                 return false;
+            }
             else
-                return true;
+            {
+                if (aux.FirstOrDefault().Family.Name.Equals(currentPlayer.Family.Name))
+                    return false;
+                else
+                    return true;
+            }
+                
         }
     }
 }
