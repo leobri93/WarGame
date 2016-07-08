@@ -208,6 +208,7 @@
     <Compile Include="Helper\Objective.cs" />
     <Compile Include="Helper\Region.cs" />
     <Compile Include="Helper\Search.cs" />
+    <Compile Include="Helper\VictoryRule.cs" />
     <Compile Include="Helper\Westeros.cs" />
     <Compile Include="TroopsDistribution.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -290,6 +291,7 @@
     </Content>
     <Content Include="fonts\Gameofthrones.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\game-loop.js" />
     <Content Include="Scripts\game-play.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

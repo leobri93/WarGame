@@ -22,12 +22,12 @@ namespace WarGame.Models
 
         private RegionPosition regionPosition;
 
-        public RegionViewModel(string name, KingdomViewModel kingdom, RegionPosition regionPosition)
+        public RegionViewModel(string name, KingdomViewModel kingdom, RegionPosition regionPosition, int troops = 1)
         {
             id = Guid.NewGuid().ToString("N");
             this.name = name;
             this.kingdom = kingdom;
-            troops = 1;
+            this.troops = troops;
             this.regionPosition = regionPosition;
         }
 
