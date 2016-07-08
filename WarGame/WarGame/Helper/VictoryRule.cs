@@ -10,7 +10,8 @@ namespace WarGame.Helper
         public static bool regrasDeVitoria(this PlayerViewModel player, List<RegionViewModel> regions, List<PlayerViewModel> players)
         {
             int checkDomination1 =0, checkDomination2 = 0, checkDomination3 = 0 ;
-            if (player.Objective.id == 8)
+            Objective obj = new Objective();
+            if (player.objective.id == 8)
             {
                 int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
                 
@@ -20,7 +21,7 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-            if (player.Objective.id == 11)
+            if (player.objective.id == 11)
             {
                 int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
                 var regionsDominated = regions.Where(x => x.Player.Id == player.Id);
@@ -31,14 +32,14 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-             if (player.Objective.id == 6)
+             if (player.objective.id == 6)
              {
-                 Objective obj = new Objective();
+                
                  if (obj.VerifyFamilyOnObjective(player, players))
                  {
-                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Stark"));
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Stark"));
 
-                     if (regionsDominatedByObjective == null)
+                     if (regionsDominatedByobjective == null)
                      {
                          return true;
                      }
@@ -53,13 +54,13 @@ namespace WarGame.Helper
                  }
                  return false;
              }
-             if (player.Objective.id == 5)
+             if (player.objective.id == 5)
              {
-                 if (player.Objective.VerifyFamilyOnObjective(player, players))
-                 {
-                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Baratheon"));
+                 if (obj.VerifyFamilyOnObjective(player, players))
+                {
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Baratheon"));
 
-                     if (regionsDominatedByObjective == null)
+                     if (regionsDominatedByobjective == null)
                      {
                          return true;
                      }
@@ -75,13 +76,13 @@ namespace WarGame.Helper
                 }
                 return false;
              }
-             if (player.Objective.id == 4)
+             if (player.objective.id == 4)
              {
-                 if (player.Objective.VerifyFamilyOnObjective(player, players))
-                 {
-                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Lannister"));
+                 if (obj.VerifyFamilyOnObjective(player, players))
+                {
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Lannister"));
 
-                     if (regionsDominatedByObjective == null)
+                     if (regionsDominatedByobjective == null)
                      {
                          return true;
                      }
@@ -97,14 +98,14 @@ namespace WarGame.Helper
                  }
                  return false;
              }
-             if (player.Objective.id == 3)
+             if (player.objective.id == 3)
              {
 
-                 if (player.Objective.VerifyFamilyOnObjective(player, players))
-                 {
-                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Greyjoy"));
+                 if (obj.VerifyFamilyOnObjective(player, players))
+                {
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Greyjoy"));
 
-                     if (regionsDominatedByObjective == null)
+                     if (regionsDominatedByobjective == null)
                      {
                          return true;
                      }
@@ -120,13 +121,13 @@ namespace WarGame.Helper
                 }
                 return false;
              }
-             if (player.Objective.id == 2)
+             if (player.objective.id == 2)
              {
-                 if (player.Objective.VerifyFamilyOnObjective(player, players))
-                 {
-                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Targaryen"));
+                 if (obj.VerifyFamilyOnObjective(player, players))
+                {
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Targaryen"));
 
-                     if (regionsDominatedByObjective == null)
+                     if (regionsDominatedByobjective == null)
                      {
                          return true;
                      }
@@ -142,14 +143,14 @@ namespace WarGame.Helper
                 }
                 return false;
              }
-             if (player.Objective.id == 1)
+             if (player.objective.id == 1)
              {
 
-                 if (player.Objective.VerifyFamilyOnObjective(player, players))
-                 {
-                     var regionsDominatedByObjective = regions.Where(x => x.Player.Family.Name.Equals("Tyrell"));
+                 if (obj.VerifyFamilyOnObjective(player, players))
+                {
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Tyrell"));
 
-                     if (regionsDominatedByObjective == null)
+                     if (regionsDominatedByobjective == null)
                      {
                          return true;
                      }
@@ -165,7 +166,7 @@ namespace WarGame.Helper
                 }
                 return false; 
              }
-            if (player.Objective.id == 10)
+            if (player.objective.id == 10)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
 
@@ -198,7 +199,7 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-            if (player.Objective.id == 13)
+            if (player.objective.id == 13)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
                 
@@ -223,7 +224,7 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-            if (player.Objective.id == 9)
+            if (player.objective.id == 9)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
        
@@ -248,7 +249,7 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-            if (player.Objective.id == 7)
+            if (player.objective.id == 7)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
                 
@@ -273,7 +274,7 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-            if (player.Objective.id == 12)
+            if (player.objective.id == 12)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
                 
@@ -299,7 +300,7 @@ namespace WarGame.Helper
                 }
                 return false;
             }
-            if (player.Objective.id == 14)
+            if (player.objective.id == 14)
             {
                 var regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id);
 
@@ -403,13 +404,13 @@ namespace WarGame.Helper
                     checkDominationVale += 1;
                 }
             }
-            if (player.Objective.id == 14) { 
+            if (player.objective.id == 14) { 
                 if (checkDominationReach == 5 || checkDominationDorne == 3 || checkDominationIron == 2 || checkDominationNorth == 10 || checkDominationVale == 6 || checkDominationStormlands == 4)
                 {
                     return true;
                 }
             }
-            if (player.Objective.id == 12)
+            if (player.objective.id == 12)
             {
                 if (checkDominationCrowlands == 3 || checkDominationDorne == 3 || checkDominationIron == 2 || checkDominationNorth == 10 || checkDominationRiverlands == 4 || checkDominationStormlands == 4)
                 {

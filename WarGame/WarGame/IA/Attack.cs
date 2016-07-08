@@ -14,49 +14,49 @@ namespace WarGame.IA
             List<RegionViewModel> regionAttack;
 
             string nameFamily, nameKingdom, nameKingdom2, nameKingdom3;
-            if (player.Objective.id == 8 || player.Objective.id == 11)
+            if (player.objective.id == 8 || player.objective.id == 11)
             {
                 regionAttack = AttackRandom(regions,player);
                 return regionAttack;
             }
         
-            if (player.Objective.id == 6)
+            if (player.objective.id == 6)
             {
                 nameFamily = "Stark";
                 regionAttack = AttackRandomFamily(nameFamily, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 5)
+            if (player.objective.id == 5)
             {
                 nameFamily = "Baratheon";
                 regionAttack = AttackRandomFamily(nameFamily, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 4)
+            if (player.objective.id == 4)
             {
                 nameFamily = "Lannister";
                 regionAttack = AttackRandomFamily(nameFamily, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 3)
+            if (player.objective.id == 3)
             {
                 nameFamily = "Greyjoy";
                 regionAttack = AttackRandomFamily(nameFamily, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 2)
+            if (player.objective.id == 2)
             {
                 nameFamily = "Targaryen";
                 regionAttack = AttackRandomFamily(nameFamily, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 1)
+            if (player.objective.id == 1)
             {
                 nameFamily = "Tyrell";
                 regionAttack = AttackRandomFamily(nameFamily, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 10)
+            if (player.objective.id == 10)
             {
                 nameKingdom = "Dorne";
                 nameKingdom2 = "The Westerlands";
@@ -64,7 +64,7 @@ namespace WarGame.IA
                 regionAttack = AttackRandomKingdom(nameKingdom,nameKingdom2,nameKingdom3,regions,player);
                 return regionAttack;
             }
-            if (player.Objective.id == 13)
+            if (player.objective.id == 13)
             {
                 nameKingdom = "The North";
                 nameKingdom2 = "The Stormlands";
@@ -72,7 +72,7 @@ namespace WarGame.IA
                 regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2,nameKingdom3, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 9)
+            if (player.objective.id == 9)
             {
                 nameKingdom = "The North";
                 nameKingdom2 = "Dorne";
@@ -80,7 +80,7 @@ namespace WarGame.IA
                 regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2,nameKingdom3, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 7)
+            if (player.objective.id == 7)
             {
                 nameKingdom = "The Riverlands";
                 nameKingdom2 = "The Reach";
@@ -88,7 +88,7 @@ namespace WarGame.IA
                 regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2,nameKingdom3, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 12)
+            if (player.objective.id == 12)
             {
                 nameKingdom = "The Reach";
                 nameKingdom2 = "TheValeOfArryn";
@@ -96,7 +96,7 @@ namespace WarGame.IA
                 regionAttack = AttackRandomKingdom(nameKingdom, nameKingdom2,nameKingdom3, regions, player);
                 return regionAttack;
             }
-            if (player.Objective.id == 14)
+            if (player.objective.id == 14)
             {
                 nameKingdom = "The Crownlands";
                 nameKingdom2 = "The Riverlands";
