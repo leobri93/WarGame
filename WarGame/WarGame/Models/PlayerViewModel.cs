@@ -11,15 +11,17 @@ namespace WarGame.Models
         private string name;
         private FamilyViewModel family;
         public ObjectiveModel objective { get; set; }
+        private bool isPlayer;
 
         public PlayerViewModel() { }
 
-        public PlayerViewModel(string name, FamilyViewModel family, ObjectiveModel objective) 
+        public PlayerViewModel(string name, FamilyViewModel family, ObjectiveModel objective, bool isPlayer) 
         {
             id = Guid.NewGuid().ToString("N");
             this.name = name;
             this.family = family;
             this.objective = objective;
+            this.isPlayer = isPlayer;
         }
 
         public string Id
@@ -38,6 +40,11 @@ namespace WarGame.Models
         {
             get { return family; }
             set { family = value; }
+        }
+
+        public bool IsPlayer
+        {
+            get { return isPlayer; }
         }
 
     }

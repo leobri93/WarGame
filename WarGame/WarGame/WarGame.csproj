@@ -203,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Conquest.cs" />
     <Compile Include="Helper\Distributions.cs" />
     <Compile Include="Helper\Kingdom.cs" />
     <Compile Include="Helper\Objective.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="IA\Attack.cs" />
     <Compile Include="IA\TroopsDistribution.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BattleModel.cs" />
     <Compile Include="Models\Enum\Families.cs" />
     <Compile Include="Models\FamilyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -292,7 +294,6 @@
     </Content>
     <Content Include="fonts\Gameofthrones.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\game-loop.js" />
     <Content Include="Scripts\game-play.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -351,6 +352,8 @@
     <Content Include="Views\Map\_MoveTroops.cshtml" />
     <Content Include="Views\Map\_Error.cshtml" />
     <Content Include="Views\Map\_InfoGeral.cshtml" />
+    <Content Include="Views\Map\_IA.cshtml" />
+    <Content Include="Views\Map\_Victory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

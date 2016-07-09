@@ -7,10 +7,10 @@ using WarGame.Models;
 
 namespace WarGame.IA
 {
-    public class TroopsDistribution
+    public static class TroopsDistribution
     {
 
-        public Dictionary<string, int> IADistributionTroops(PlayerViewModel player, List<RegionViewModel> regions)
+        public static Dictionary<string, int> IADistributionTroops(this PlayerViewModel player, List<RegionViewModel> regions)
         {
             Random rnd = new Random();
 

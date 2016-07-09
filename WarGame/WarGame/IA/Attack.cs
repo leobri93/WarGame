@@ -164,7 +164,7 @@ namespace WarGame.IA
             List<RegionViewModel> regionsInBattle = new List<RegionViewModel>();
             regionsInBattle.Add(regionAttack);
             regionsInBattle.Add(attackedRegion);
-            if (regionAttack == null)
+            if (attackedRegion == null)
             {
                 regionsInBattle = AttackRandom(regions, player);
             }
@@ -200,7 +200,7 @@ namespace WarGame.IA
             List<RegionViewModel> regionsInBattle = new List<RegionViewModel>();
             regionsInBattle.Add(regionAttack);
             regionsInBattle.Add(attackedRegion);
-            if (regionAttack == null)
+            if (attackedRegion == null)
             {
                 regionsInBattle = AttackRandom(regions, player);
             }
