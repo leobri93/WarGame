@@ -17,7 +17,6 @@ namespace WarGame.Helper
         public static void regionsDistribution(List<PlayerViewModel> players, List<RegionViewModel> regions)
         {
             int numberOfterritories = regions.Count / players.Count;
-
             Random rnd = new Random();
 
             List<RegionViewModel> auxRegions = new List<RegionViewModel>(regions);

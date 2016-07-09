@@ -2,31 +2,42 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title distribute name-region">Movimentar tropas</h4>
-                <main class="inline-block-centralizado" style="margin-bottom:10px">
-                    <div class="container qtd-tropas">
-                        <h6 style="text-align:center">quantidade de tropas na região:</h6>
-                        <p class="qtd-troops distribute"><p>
-                    </div>
-                </main>
+                <h4 class="modal-title distribute name-region"></h4>
             </div>
             <div class="modal-body">
-                <input class="hidden distribute region-id" value=""/>
-                <div id="movimentar-tropas">
-                    <h5>Escolha de movimento:</h5>
-                    <select class="form-control distribute" id="fronteiras-aliadas">
-                    </select>
-                    <h5>Quantidade de tropas a mover:</h5>
-                    <main class="inline-block-centralizado" style="margin-bottom:10px">
-                        <select class="form-control distribute" id="move-troops">
-                        </select>
-                    </main>
-                </div>
+                <form>
+                    <input class="hidden distribute region-id" value="" />
+                    <div class="row custom">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Tropas
+                            </label>
+                            <div class="col-md-3">
+                                <select class="form-control distribute" id="move-troops"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group custom">
+                            <label class="control-label col-md-3">
+                                Fronteiras
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control distribute" id="fronteiras-aliadas"></select>
+                            </div>
+                        </div>
+                    </div>
+                </form>   
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="move-btn">movimentar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">fechar</button>
+            <div class="modal-footer custom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-modal btn-block btn-danger" data-dismiss="modal">fechar</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-modal btn-block btn-primary" id="move-btn">movimentar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

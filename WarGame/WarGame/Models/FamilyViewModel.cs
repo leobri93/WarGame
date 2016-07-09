@@ -24,10 +24,10 @@ namespace WarGame.Models
         {
             ["Targaryen"] = "#fff",
             ["Lannister"] = "#f00",
-            ["Stark"] = "#0f0",
+            ["Stark"] = "#00f",
             ["Baratheon"] = "#ff0",
             ["GreyJoy"] = "#0ff",
-            ["Tyrell"] = "#00f"
+            ["Tyrell"] = "#0f0"
         };
 
         private readonly Dictionary<string, string> srcs = new Dictionary<string, string>

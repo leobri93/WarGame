@@ -8,6 +8,7 @@ using WarGame.Models;
 using WarGame.Models.Enum;
 using WarGame.Helper;
 using System.Net;
+using WarGame.IA;
 
 namespace WarGame.Controllers
 {
@@ -37,12 +38,36 @@ namespace WarGame.Controllers
 
             Distributions.regionsDistribution(players, regions);
 
+            Disponibilizar_bonus();
             ViewBag.Name = player.Name;
             ViewBag.Familiy = player.Family.Name;
             ViewBag.Objective = myObj.description;
             ViewBag.Src = players.First().Family.Src;
+           
+            ViewBag.Player1 = players[0].Family.Name;
+            ViewBag.ColorPlayer1 = players[0].Family.Color;
+            ViewBag.Player2 = players[1].Family.Name; 
+            ViewBag.ColorPlayer2 = players[1].Family.Color;
+            ViewBag.Player3 = players[2].Family.Name; 
+            ViewBag.ColorPlayer3 = players[2].Family.Color;
+            //testando
+            TroopsDistribution tia = new TroopsDistribution();
+            tia.IADistributionTroops(players[1], regions);
 
             return View();
+        }
+        public void Disponibilizar_bonus()
+        {
+            ViewBag.BonusDorne = Kingdom.Instance.Dorne.Bonus;
+            ViewBag.BonusTheCrownlands = Kingdom.Instance.TheCrownlands.Bonus;
+            ViewBag.BonusTheIronIslands = Kingdom.Instance.TheIronIslands.Bonus;
+            ViewBag.BonusTheNorth = Kingdom.Instance.TheNorth.Bonus;
+            ViewBag.BonusTheReach = Kingdom.Instance.TheReach.Bonus;
+            ViewBag.BonusTheRiverlands = Kingdom.Instance.TheRiverlands.Bonus;
+            ViewBag.BonusTheStormlands = Kingdom.Instance.TheStormlands.Bonus;
+            ViewBag.BonusTheValeOfArryn = Kingdom.Instance.TheValeOfArryn.Bonus;
+            ViewBag.BonusTheWesterlands = Kingdom.Instance.TheWesterlands.Bonus;
+
         }
 
         [HttpGet]
@@ -53,11 +78,20 @@ namespace WarGame.Controllers
         }
 
         [HttpGet]
-        [Route("maps/attack/{rid}")]
-        public JsonResult Attack(string rid) 
+        [Route("maps/{pid}/attack/{rid}")]
+        public JsonResult Attack(string pid, string rid) 
         {
-            var region = regions.Region(rid);
-            var enemyBorders = region.EnemyFrontiers(region.Player.Id);
+            var region = regions.FindRegion(rid);
+            string message;
+
+            if (region.Player.Id != pid)
+            {
+                message = $"A região de {region.Name} não foi conquistada ainda. Conquiste-a!";
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { name = region.Name, message = message }, JsonRequestBehavior.AllowGet);
+            }
+
+            var enemyBorders = region.EnemyFrontiers(pid);
 
             if (enemyBorders.Count() > 0 && region.Troops > 1)
             {
@@ -67,16 +101,17 @@ namespace WarGame.Controllers
                     JsonRequestBehavior.AllowGet);
             }
 
+            message = (region.Troops == 1) ? $"Temos poucos soldados aqui em {region.Name}. Quando os reforços chegarem, atacaremos." : $"Olhe à sua volta. Regiões aliadas protengem {region.Name}";
             Response.StatusCode = (int) HttpStatusCode.BadRequest;
-            return Json(new { message = "Jogador não pode atacar."}, JsonRequestBehavior.AllowGet);
+            return Json(new { name = region.Name, message = message }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         [Route("maps/battle")]
         public JsonResult Battle(string aid, string did, int atroops)
         {
-            var attack = regions.Region(aid);
-            var defense = regions.Region(did);
+            var attack = regions.FindRegion(aid);
+            var defense = regions.FindRegion(did);
 
             var dtroops = (defense.Troops > 3) ? 3 : defense.Troops;
             var random = new Random();
@@ -88,15 +123,6 @@ namespace WarGame.Controllers
             dplayer = rollTheDice(dplayer, random);
 
             var resultBattle = attack.Attack(defense, aplayer, dplayer);
-            var victory = "";
-
-            if (resultBattle[0] <= resultBattle[1])
-            {
-                victory = attack.Name;
-            } else
-            {
-                victory = defense.Name;
-            }
 
             string color = null;
             if (defense.Troops < 1)
@@ -108,7 +134,7 @@ namespace WarGame.Controllers
             }
 
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { aplayer = aplayer, dplayer = dplayer, attackName = attack.Name, attackTroops = attack.Troops, defenseName = defense.Name, defenseTroops = defense.Troops, victory = victory, color = color});
+            return Json(new { aplayer = aplayer, dplayer = dplayer, attackName = attack.Name, attackTroops = attack.Troops, defenseName = defense.Name, defenseTroops = defense.Troops, resultBattle = resultBattle, color = color});
         }
 
         private int[] rollTheDice(int[] player, Random random)
@@ -122,37 +148,57 @@ namespace WarGame.Controllers
         }
 
         [HttpGet]
-        [Route("maps/{rid}/distribute-troops/{pid}")]
-        public JsonResult DistributeTroops(string rid, string pid)
+        [Route("maps/{pid}/distribute-troops/{rid}")]
+        public JsonResult DistributeTroops(string pid, string rid)
         {
-            var region = regions.Region(rid);
+            var region = regions.FindRegion(rid);
             var player = players.First(p => p.Id == pid);
             if (region.Player.Id.Equals(pid))
             {
                 var troopsToDistribute = Distributions.troopsDistribution(player, regions);
                 Response.StatusCode = (int)HttpStatusCode.OK;
-                return Json(new { name = region.Name, troopsToDistribute = troopsToDistribute }, JsonRequestBehavior.AllowGet);
+                return Json(new { name = region.Name }, JsonRequestBehavior.AllowGet);
             }
 
+            var message = $"O que você está fazendo? Não vamos fortalecer nossos inimigos.";
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return Json(new { message = "Essa região não é sua." }, JsonRequestBehavior.AllowGet);
+            return Json(new { name = region.Name, message = message }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Route("maps/troops-to-distribute/{pid}")]
+        public JsonResult TroopsToDistribute(string pid)
+        {
+            var player = players.FindPlayer(pid);
+            var troopsToDistribute = Distributions.troopsDistribution(player, regions);
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { troopsToDistribute = troopsToDistribute }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         [Route("maps/add-troops")]
         public JsonResult AddTroops(string rid, int troops) 
         {
-            var region = regions.Region(rid);
+            var region = regions.FindRegion(rid);
             region.Troops += troops;           
             Response.StatusCode = (int)HttpStatusCode.OK;
             return Json(new { name = region.Name, troops = region.Troops });
         }
 
         [HttpGet]
-        [Route("maps/move-troops/{rid}")]
-        public JsonResult MoveTroops(string rid)
+        [Route("maps/{pid}/move-troops/{rid}")]
+        public JsonResult MoveTroops(string pid, string rid)
         {
-            var region = regions.Region(rid);
+            var region = regions.FindRegion(rid);
+            string message;
+
+            if (region.Player.Id != pid)
+            {
+                message = $"O que espera? Que o inimigo lhe envie reforços?";
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { name = region.Name, message = message }, JsonRequestBehavior.AllowGet);
+            }
+
             var friendlyBorders = region.FriendlyFrontiers(region.Player.Id);
 
             if (friendlyBorders.Count() > 0 && region.Troops > 1)
@@ -162,23 +208,31 @@ namespace WarGame.Controllers
                 return Json(new { name = region.Name, friendlyBorders = friendlyBorders,  troops = maxTroops }, 
                     JsonRequestBehavior.AllowGet);
             }
-
+            message = (region.Troops == 1) ? $"Já temos poucos soldados aqui em {region.Name}, não podemos enviar reforços." : $"Estamos cercados! Precisamos dominar as regiões vizinhas ou elas nos dominarão.";
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return Json(new { message = "Não pode mover tropas." }, JsonRequestBehavior.AllowGet);
+            return Json(new { name = region.Name, message = message }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         [Route("maps/transfer-troops")]
         public JsonResult TransferTroops(string sid, string did, int troops)
         {
-            var sourceRegion = regions.Region(sid);
-            var destinationRegion = regions.Region(did);
+            var sourceRegion = regions.FindRegion(sid);
+            var destinationRegion = regions.FindRegion(did);
 
             sourceRegion.Troops -= troops;
             destinationRegion.Troops += troops;
 
             Response.StatusCode = (int)HttpStatusCode.OK;
             return Json(new { nameSource = sourceRegion.Name, sourceTroops = sourceRegion.Troops, nameDestination = destinationRegion.Name, destinationTroops = destinationRegion.Troops });
+        }
+
+        [HttpGet]
+        [Route("maps/player-turn/{i}")]
+        public JsonResult PlayerTurn(int i)
+        {           
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { player = players[i] }, JsonRequestBehavior.AllowGet);
         }
 
     }
