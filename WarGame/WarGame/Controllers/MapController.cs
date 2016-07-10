@@ -251,28 +251,45 @@ namespace WarGame.Controllers
             return new { namePlayer = namePlayer, regions = regionsChanged, troops = troops };
         }
 
-        private object AttackIA(PlayerViewModel player)
+        private List<object> AttackIA(PlayerViewModel player)
         {
+            var objs = new List<object>();
+
             var response = player.Ataque(regions);
-            var attack = response[0];
-            var defense = response[1];
 
-            var atroops = (attack.Troops > 3) ? 3 : attack.Troops;
-            var resultBattle = Conquest.Battle(attack, atroops, defense);
-
-            string color = null;
-            if (defense.Troops < 1)
+            while (response != null && response[0] != null && response[1] != null)
             {
-                defense.Player = attack.Player;
-                defense.Troops++;
-                attack.Troops--;
-                color = attack.Player.Family.Color;
-            }
+                var attack = response[0];
+                var defense = response[1];
 
-           return new {
-                        attackName = attack.Name, attackTroops = attack.Troops,defenseName = defense.Name,
-                        defenseTroops = defense.Troops, resultBattle = resultBattle.resultBattle, color = color
-                      };
+                var atroops = (attack.Troops > 3) ? 3 : attack.Troops;
+                var resultBattle = Conquest.Battle(attack, atroops, defense);
+
+                string color = null;
+                if (defense.Troops < 1)
+                {
+                    defense.Player = attack.Player;
+                    defense.Troops++;
+                    attack.Troops--;
+                    color = attack.Player.Family.Color;
+                }
+
+                var obj = new
+                {
+                    attackName = attack.Name,
+                    attackTroops = attack.Troops,
+                    defenseName = defense.Name,
+                    defenseTroops = defense.Troops,
+                    resultBattle = resultBattle.resultBattle,
+                    color = color
+                };
+
+                objs.Add(obj);
+                response = player.Ataque(regions);
+            }
+           
+
+           return objs;
         }
 
     }
