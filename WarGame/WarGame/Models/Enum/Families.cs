@@ -11,7 +11,7 @@ namespace WarGame.Models.Enum
         Lannister,
         Stark,
         Baratheon,
-        GreyJoy,
+        Greyjoy,
         Tyrell
     }
 

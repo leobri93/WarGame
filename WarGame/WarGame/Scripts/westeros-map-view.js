@@ -69,7 +69,7 @@
         var bitmap = new createjs.Bitmap(new Image().src = element.RegionsPosition.Src);
         var shape = new createjs.Shape();
         var text = new createjs.Text(1, 'bold 15px Helvica', '#000');
-        var tooltipText = new createjs.Text("", 'bold 15px Helvica', '#fff');
+        var tooltipText = new createjs.Text("", 'bold 17px Helvica', '#fff');
 
         text.align = "center";
         text.x = element.RegionsPosition.TroopsX - 4.5;
@@ -77,8 +77,8 @@
         text.name = element.Name + " Text";
         
         tooltipText.align = "center";
-        tooltipText.x = element.RegionsPosition.TroopsX - 40;
-        tooltipText.y = element.RegionsPosition.TroopsY + 5;
+        tooltipText.x = element.RegionsPosition.TroopsX - 10;
+        tooltipText.y = element.RegionsPosition.TroopsY + 10;
 
         shape.graphics.beginFill(element.Player.Family.Color);
         shape.graphics.beginStroke("#000");
