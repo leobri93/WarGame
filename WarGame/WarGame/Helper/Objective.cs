@@ -110,7 +110,7 @@ namespace WarGame.Helper
         {
             IEnumerable<PlayerViewModel> aux;
 
-            aux = players.Where(x => x.Family.Equals(familyName));
+            aux = players.Where(x => x.Family.Name.Equals(familyName));
 
             if (aux == null || aux.Count() == 0)
             {

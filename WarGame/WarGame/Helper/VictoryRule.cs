@@ -23,10 +23,9 @@ namespace WarGame.Helper
             }
             if (player.objective.id == 11)
             {
-                int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).ToList().Count();
-                var regionsDominated = regions.Where(x => x.Player.Id == player.Id);
-                var regionsWith1Troop = regionsDominated.Where(x => x.Troops == 1);
-                if (regionsDominatedByPlayer >= 18 && regionsWith1Troop == null)
+                int regionsDominatedByPlayer = regions.Where(x => x.Player.Id == player.Id).Where(x=> x.Troops > 1).ToList().Count();
+                
+                if (regionsDominatedByPlayer >= 18)
                 {
                     return true;
                 }
@@ -39,7 +38,7 @@ namespace WarGame.Helper
                  {
                      var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Stark"));
 
-                     if (regionsDominatedByobjective == null)
+                     if (regionsDominatedByobjective == null || regionsDominatedByobjective.Count() == 0 )
                      {
                          return true;
                      }
@@ -335,7 +334,7 @@ namespace WarGame.Helper
             int checkDominationCrowlands = 0;
             foreach (RegionViewModel r in regionsDominatedByPlayer)
             {
-                if (r.Kingdom.Equals("The Crownlands"))
+                if (r.Kingdom.Name.Equals("The Crownlands"))
                 {
                     checkDominationCrowlands += 1;
                 }
@@ -419,5 +418,6 @@ namespace WarGame.Helper
             }
             return false;
         }
+    
     }
 }
