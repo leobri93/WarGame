@@ -5,11 +5,12 @@
 @Html.Partial("_Objective")
 @Html.Partial("_Error")
 @Html.Partial("_InfoGeral")
-
+@Html.Partial("_IA")
+@Html.Partial("_Victory")
 
 <div class="tabuleiro">
     <div class="row">
-        <div class="col-md-4"><h5 class="head"><span id="round">1� Round</span></h5></div>
+        <div class="col-md-4"><h5 class="head"><span id="round">Rodada de distribuicao de tropas</span></h5></div>
         <div class="col-md-4"><h5 class="head">Jogador: <span id="player-name"></span></h5></div>
         <div class="col-md-4 head"><input id="player-id" class="hidden" value="" /></div>
     </div>
@@ -26,31 +27,31 @@
                             <img src="@ViewBag.Src" width="100">
                         </main>
                     </div>
-                    <hr />
+                    <hr />         
                     <div class="container">
                         <main class="inline-block-centralizado">
-                            <a id="objective" title="Objetivo">
-                                <img src="../Content/Images/trophy-icon.png" width="80" id="objective-icon" />
-                            </a>
-                        </main>
-                    </div>     
-                    <hr />
-                    <div class="container">
-                        <main class="inline-block-centralizado">
-                            <span class="turn-name">Distribuição de tropas</span>
+                            <span class="turn-name">Distribuicao de tropas</span>
                             <input type="text" class="form-control text-center" id="troops-to-distributed" disabled/>
-                            <span></span>
                         </main>
-                    </div>   
+                    </div>  
                     <hr />
-                    <!--modal legenda-->
-                    <main class="inline-block-centralizado">
-                        <button type="button" class="btn btn-default" id="info-geral" title="Legenda">Informações gerais</button>
-                    </main>
-                    <hr />
-                   <main class="inline-block-centralizado" style="margin-bottom:5px">
+                    <main class="inline-block-centralizado" style="margin-bottom:5px">
                         <button type="button" class="btn btn-default" id="pass-round">PASSAR RODADA</button>
-                    </main>
+                    </main> 
+                    <hr />
+                    <div class="row info">
+                        <div class="col-md-6">
+                            <a id="info-icon" title="Informa��es de Jogo">
+                                <img src="../Content/Images/Icons/information.ico" width="35" id="info-geral" />
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a id="objective" title="Objetivo">
+                                <img src="../Content/Images/Icons/trophy-512.png" width="35" id="objective-icon" />
+                            </a>
+                        </div>
+                    </div>   
+                    <br />               
                 </div>
             </div>
         </div>
