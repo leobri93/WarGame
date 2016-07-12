@@ -220,9 +220,9 @@ namespace WarGame.Controllers
             var player = players.FindPlayer(pid);
             if (player.regrasDeVitoria(regions, players))
             {                
-                return Json(new { victory = true }, JsonRequestBehavior.AllowGet);
+                return Json(new { victory = true, family = player.Family.Name, objective = player.objective.description }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { victory = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { victory = false, family = player.Family.Name, objective = player.objective.description }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -239,7 +239,7 @@ namespace WarGame.Controllers
                 battle = AttackIA(player);
             }
 
-            return Json(new { distribution = distribution, battle = battle}, JsonRequestBehavior.AllowGet);
+            return Json(new { distribution = distribution, battle = battle});
         }
 
         private object DistributeTroops(PlayerViewModel player)
@@ -262,7 +262,7 @@ namespace WarGame.Controllers
                 var attack = response[0];
                 var defense = response[1];
 
-                var atroops = (attack.Troops > 3) ? 3 : attack.Troops;
+                var atroops = (attack.Troops > 3) ? 3 : attack.Troops - 1;
                 var resultBattle = Conquest.Battle(attack, atroops, defense);
 
                 string color = null;

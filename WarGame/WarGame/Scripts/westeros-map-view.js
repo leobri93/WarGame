@@ -28,7 +28,7 @@
                 $("#player-name").empty();
                 $("#player-name").append(data.player.Name+" "+data.player.Family.Name);
                 $("#player-id").val(data.player.Id);
-                if (!data.player.IsPlayer) {
+                if (!data.player.IsPlayer && !$('#modal-victory').hasClass('in')) {
                     _game_play.execute_ia(data.player.Id, stage, round);
                 } else {
                     _game_play.troops_to_distribute(data.player.Id);
@@ -174,6 +174,7 @@
 
         $(".close-ia").on("click", function () {
             nextPlayer();
+            _game_play.victory($("#player-id").val());
             $(".modal-backdrop").remove();
         })
 

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\VictoryController.cs" />
     <Compile Include="Controllers\WelcomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\baratheon.png" />
+    <Content Include="Content\Images\game-of-thrones-crown.jpg" />
     <Content Include="Content\Images\game-of-thrones-house-flags-wallpaper-3201.jpg" />
     <Content Include="Content\Images\greyjoy.png" />
     <Content Include="Content\Images\Icons\information.ico" />
@@ -355,6 +357,7 @@
     <Content Include="Views\Map\_InfoGeral.cshtml" />
     <Content Include="Views\Map\_IA.cshtml" />
     <Content Include="Views\Map\_Victory.cshtml" />
+    <Content Include="Views\Victory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

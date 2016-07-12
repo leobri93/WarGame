@@ -81,7 +81,7 @@ namespace WarGame.Helper
                     result = SearchFamilyOnPlayers("Targaryen", currentPlayer, players);
                     break;
                 case 3:
-                    result = SearchFamilyOnPlayers("GreyJoy", currentPlayer, players);
+                    result = SearchFamilyOnPlayers("Greyjoy", currentPlayer, players);
                     break;
                 case 4:
                     result = SearchFamilyOnPlayers("Lannister", currentPlayer, players);
@@ -110,7 +110,7 @@ namespace WarGame.Helper
         {
             IEnumerable<PlayerViewModel> aux;
 
-            aux = players.Where(x => x.Family.Equals(familyName));
+            aux = players.Where(x => x.Family.Name.Equals(familyName));
 
             if (aux == null || aux.Count() == 0)
             {

@@ -33,6 +33,23 @@ h1.welcome-title {
     height:100%;
     position:fixed;
 }
+
+.victoryImg{
+    background: url('../Images/game-of-thrones-crown.jpg');
+    background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+    width:100%;
+    height:100%;
+    position:fixed;
+}
+
+.play-again{
+    position:relative;
+    top:92%;
+    left:85%;
+}
+
 .tabuleiro {
     background: url('../Images/game-of-thrones-house-flags-wallpaper-3201.jpg');
 	background-repeat: repeat;

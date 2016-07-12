@@ -193,6 +193,8 @@
             dataType: "json",
             success: function (data) {
                 if (data.victory) {
+                    $("#family").append(data.family);
+                    $("#goal").append(data.objective);
                     $("#modal-victory").modal("show");
                 }
             }
