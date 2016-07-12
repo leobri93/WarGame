@@ -18,7 +18,7 @@
     };
 
     var attack_IA = function (data, stage) {
-        $("#attack-ia").append("<div>" + data.attackName + " (tropas perdidas:" + data[0].resultBattle[0] + ") atacou " + data.defenseName + " (tropas perdidas:" + data.resultBattle[1] + ")</div>");
+        $("#attack-ia").append("<div>" + data.attackName + " (tropas perdidas:" + data.resultBattle[0] + ") atacou " + data.defenseName + " (tropas perdidas:" + data.resultBattle[1] + ")</div>");
         changeText(data.attackName, data.attackTroops, stage);
         changeText(data.defenseName, data.defenseTroops, stage);
         if (data.color != null) {
