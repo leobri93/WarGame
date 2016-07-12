@@ -28,7 +28,11 @@
                 $("#player-name").empty();
                 $("#player-name").append(data.player.Name+" "+data.player.Family.Name);
                 $("#player-id").val(data.player.Id);
-                _game_play.troops_to_distribute(data.player.Id);
+                if (!data.player.IsPlayer) {
+                    _game_play.execute_ia(data.player.Id, stage, round);
+                } else {
+                    _game_play.troops_to_distribute(data.player.Id);
+                }
             }
         });
     };
@@ -37,7 +41,10 @@
         if (round == 0) {
             turn = 3;
         } else { ++turn; }
-        if (turn > 2) nextPlayer();
+        if (turn > 2) {
+            _game_play.victory($("#player-id").val());
+            nextPlayer();
+        }
         $(".turn-name").empty().append(turn_name[turn]);
         if (turn != 0) { $("#troops-to-distributed").addClass("hidden"); }
         else { $("#troops-to-distributed").removeClass("hidden"); }
@@ -62,7 +69,7 @@
         var bitmap = new createjs.Bitmap(new Image().src = element.RegionsPosition.Src);
         var shape = new createjs.Shape();
         var text = new createjs.Text(1, 'bold 15px Helvica', '#000');
-        var tooltipText = new createjs.Text("", 'bold 15px Helvica', '#fff');
+        var tooltipText = new createjs.Text("", 'bold 17px Helvica', '#fff');
 
         text.align = "center";
         text.x = element.RegionsPosition.TroopsX - 4.5;
@@ -70,9 +77,8 @@
         text.name = element.Name + " Text";
         
         tooltipText.align = "center";
-        tooltipText.x = element.RegionsPosition.TroopsX - 40;
-        tooltipText.y = element.RegionsPosition.TroopsY + 5;
-        tooltipText.zIndex = 1111100;
+        tooltipText.x = element.RegionsPosition.TroopsX - 10;
+        tooltipText.y = element.RegionsPosition.TroopsY + 10;
 
         shape.graphics.beginFill(element.Player.Family.Color);
         shape.graphics.beginStroke("#000");
@@ -165,6 +171,11 @@
         $("#info-geral").on("click", function () {
             $("#modal-info-geral").modal("show");
         });
+
+        $(".close-ia").on("click", function () {
+            nextPlayer();
+            $(".modal-backdrop").remove();
+        })
 
     });
 

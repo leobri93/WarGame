@@ -22,12 +22,12 @@ namespace WarGame.Models
 
         private readonly Dictionary<string, string> colors = new Dictionary<string, string>
         {
-            ["Targaryen"] = "#fff",
-            ["Lannister"] = "#f00",
-            ["Stark"] = "#00f",
-            ["Baratheon"] = "#ff0",
-            ["GreyJoy"] = "#0ff",
-            ["Tyrell"] = "#0f0"
+            ["Targaryen"] = "#1c4ba2",
+            ["Lannister"] = "#f44336",
+            ["Stark"] = "#ccc",
+            ["Baratheon"] = "#ffc107",
+            ["Greyjoy"] = "#47afaf",
+            ["Tyrell"] = "#48bd48"
         };
 
         private readonly Dictionary<string, string> srcs = new Dictionary<string, string>
@@ -36,7 +36,7 @@ namespace WarGame.Models
             ["Lannister"] = "../Content/Images/lannister.png",
             ["Stark"] = "../Content/Images/stark.png",
             ["Baratheon"] = "../Content/Images/baratheon.png",
-            ["GreyJoy"] = "../Content/Images/greyjoy.png",
+            ["Greyjoy"] = "../Content/Images/greyjoy.png",
             ["Tyrell"] = "../Content/Images/tyrell.png"
         };
 

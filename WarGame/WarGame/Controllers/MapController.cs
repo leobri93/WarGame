@@ -26,19 +26,19 @@ namespace WarGame.Controllers
             var myObj = obj.RafflingObjectives();
 
             players = new List<PlayerViewModel>();
-            players.Add(new PlayerViewModel(player.Name, new FamilyViewModel(myFamily), myObj));
+            players.Add(new PlayerViewModel(player.Name, new FamilyViewModel(myFamily), myObj, true));
 
             var families = Enum.GetNames(typeof(Family)).Select(e => new SelectListItem { Text = e });
 
             var firstFamily = families.First(x => x.Text != myFamily).Text;
-            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(firstFamily), obj.RafflingObjectives()));
+            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(firstFamily), obj.RafflingObjectives(), false));
 
             var secondFamily = families.First(x => x.Text != myFamily & x.Text != firstFamily).Text;
-            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(secondFamily), obj.RafflingObjectives()));
+            players.Add(new PlayerViewModel("Computador", new FamilyViewModel(secondFamily), obj.RafflingObjectives(), false));
 
             Distributions.regionsDistribution(players, regions);
 
-            Disponibilizar_bonus();
+            DisponibilizarBonus();
             ViewBag.Name = player.Name;
             ViewBag.Familiy = player.Family.Name;
             ViewBag.Objective = myObj.description;
@@ -50,13 +50,10 @@ namespace WarGame.Controllers
             ViewBag.ColorPlayer2 = players[1].Family.Color;
             ViewBag.Player3 = players[2].Family.Name; 
             ViewBag.ColorPlayer3 = players[2].Family.Color;
-            //testando
-            TroopsDistribution tia = new TroopsDistribution();
-            tia.IADistributionTroops(players[1], regions);
-
+            
             return View();
         }
-        public void Disponibilizar_bonus()
+        public void DisponibilizarBonus()
         {
             ViewBag.BonusDorne = Kingdom.Instance.Dorne.Bonus;
             ViewBag.BonusTheCrownlands = Kingdom.Instance.TheCrownlands.Bonus;
@@ -113,16 +110,7 @@ namespace WarGame.Controllers
             var attack = regions.FindRegion(aid);
             var defense = regions.FindRegion(did);
 
-            var dtroops = (defense.Troops > 3) ? 3 : defense.Troops;
-            var random = new Random();
-
-            var aplayer = new int[atroops];
-            var dplayer = new int[dtroops];
-
-            aplayer = rollTheDice(aplayer, random);
-            dplayer = rollTheDice(dplayer, random);
-
-            var resultBattle = attack.Attack(defense, aplayer, dplayer);
+            var resultBattle = Conquest.Battle(attack, atroops, defense);
 
             string color = null;
             if (defense.Troops < 1)
@@ -134,19 +122,9 @@ namespace WarGame.Controllers
             }
 
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { aplayer = aplayer, dplayer = dplayer, attackName = attack.Name, attackTroops = attack.Troops, defenseName = defense.Name, defenseTroops = defense.Troops, resultBattle = resultBattle, color = color});
+            return Json(new { aplayer = resultBattle.aplayer, dplayer = resultBattle.dplayer, attackName = attack.Name, attackTroops = attack.Troops, defenseName = defense.Name, defenseTroops = defense.Troops, resultBattle = resultBattle.resultBattle, color = color});
         }
-
-        private int[] rollTheDice(int[] player, Random random)
-        {
-            for (var i = 0; i < player.Length; i++)
-            {
-                player[i] = random.Next(1, 7);
-            }
-
-            return player.OrderByDescending(d => d).ToArray();
-        }
-
+     
         [HttpGet]
         [Route("maps/{pid}/distribute-troops/{rid}")]
         public JsonResult DistributeTroops(string pid, string rid)
@@ -233,6 +211,85 @@ namespace WarGame.Controllers
         {           
             Response.StatusCode = (int)HttpStatusCode.OK;
             return Json(new { player = players[i] }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Route("maps/{pid}/victory")]
+        public JsonResult Victory(string pid)
+        {
+            var player = players.FindPlayer(pid);
+            if (player.regrasDeVitoria(regions, players))
+            {                
+                return Json(new { victory = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { victory = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [Route("maps/player-execute")]
+        public JsonResult ExecuteIA(string pid, int round)
+        {
+            var player = players.FindPlayer(pid);
+
+            var distribution = DistributeTroops(player);
+
+            object battle = null;
+            if (round > 0)
+            {
+                battle = AttackIA(player);
+            }
+
+            return Json(new { distribution = distribution, battle = battle}, JsonRequestBehavior.AllowGet);
+        }
+
+        private object DistributeTroops(PlayerViewModel player)
+        {
+            var regionsWithAdditionalTroops = player.IADistributionTroops(regions);
+            var regionsChanged = regionsWithAdditionalTroops.Keys;
+            var troops = regionsWithAdditionalTroops.Values;
+            var namePlayer = $"{player.Name} {player.Family.Name}";
+            return new { namePlayer = namePlayer, regions = regionsChanged, troops = troops };
+        }
+
+        private List<object> AttackIA(PlayerViewModel player)
+        {
+            var objs = new List<object>();
+
+            var response = player.Ataque(regions);
+
+            while (response != null && response[0] != null && response[1] != null)
+            {
+                var attack = response[0];
+                var defense = response[1];
+
+                var atroops = (attack.Troops > 3) ? 3 : attack.Troops;
+                var resultBattle = Conquest.Battle(attack, atroops, defense);
+
+                string color = null;
+                if (defense.Troops < 1)
+                {
+                    defense.Player = attack.Player;
+                    defense.Troops++;
+                    attack.Troops--;
+                    color = attack.Player.Family.Color;
+                }
+
+                var obj = new
+                {
+                    attackName = attack.Name,
+                    attackTroops = attack.Troops,
+                    defenseName = defense.Name,
+                    defenseTroops = defense.Troops,
+                    resultBattle = resultBattle.resultBattle,
+                    color = color
+                };
+
+                objs.Add(obj);
+                response = player.Ataque(regions);
+            }
+           
+
+           return objs;
         }
 
     }

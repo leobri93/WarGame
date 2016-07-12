@@ -6,6 +6,27 @@
         $("#modal-error").modal("show");
     };
 
+    var distribute_troops_IA = function (data, stage) {       
+        for (var i = 0; i < data.regions.length; i++) {
+            var child = stage.getChildByName(data.regions[i] + " Text");
+            var troops = child.text;
+            changeText(data.regions[i], data.troops[i] + troops, stage);
+            $("#distributed-ia").append("<div class='col-md-6'>" + data.regions[i] + ": <span class='add'> + " + data.troops[i] + " tropa (s)</span></div>");
+        }
+        $("#player").append(data.namePlayer);
+        $("#modal-ia").modal("show");
+    };
+
+    var attack_IA = function (data, stage) {
+        $("#attack-ia").append("<div>" + data.attackName + " (tropas perdidas:" + data[0].resultBattle[0] + ") atacou " + data.defenseName + " (tropas perdidas:" + data.resultBattle[1] + ")</div>");
+        changeText(data.attackName, data.attackTroops, stage);
+        changeText(data.defenseName, data.defenseTroops, stage);
+        if (data.color != null) {
+            var childShape = stage.getChildByName(data.defenseName + " Shape");
+            childShape.graphics._fill.style = data.color;
+        }
+    };
+
     var changeText = function (name, troops, stage) {
         var child = stage.getChildByName(name + " Text");
         if(child.text < 10 && troops > 9) child.x -= 4.0;
@@ -21,6 +42,7 @@
             $("#roll-the-dice").append("<div class='row dice'><div class='col-md-2'><div class='dado-atacante'>" + resultAttack + "</div></div><div class='col-md-1 ex'>x</div><div class='col-md-2'><div class='dado-defense'>" + resultDefense + "</div></div></div>");
         }
     };
+
     var attack = function (rid, pid) {
         $.ajax({
             url: "/maps/"+pid+"/attack/"+rid,
@@ -148,6 +170,35 @@
         });
     };
 
+    var execute_ia = function (pid, stage, round) {
+        $.ajax({
+            url: "maps/player-execute",
+            type: "POST",
+            dataType: "json",
+            data: { pid:pid, round:round },
+            success: function (data) {
+                $(".clean").empty();
+                distribute_troops_IA(data.distribution, stage);
+                if (data.battle != null) {
+                    for (var i = 0; i < data.battle.length; i++) attack_IA(data.battle[i], stage);
+                }
+            }
+        });
+    };
+
+    var victory = function (pid) {
+        $.ajax({
+            url: "maps/"+pid+"/victory",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.victory) {
+                    $("#modal-victory").modal("show");
+                }
+            }
+        });
+    };
+
     return {
         attack: attack,
         battle: battle,
@@ -155,7 +206,9 @@
         troops_to_distribute: troops_to_distribute,
         add_troops: add_troops,
         move_troops: move_troops,
-        transfer_troops: transfer_troops
+        transfer_troops: transfer_troops,
+        execute_ia: execute_ia,
+        victory: victory
     }
 
 }();

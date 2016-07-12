@@ -203,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Conquest.cs" />
     <Compile Include="Helper\Distributions.cs" />
     <Compile Include="Helper\Kingdom.cs" />
     <Compile Include="Helper\Objective.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="IA\Attack.cs" />
     <Compile Include="IA\TroopsDistribution.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BattleModel.cs" />
     <Compile Include="Models\Enum\Families.cs" />
     <Compile Include="Models\FamilyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,12 +230,13 @@
     <Content Include="Content\Images\baratheon.png" />
     <Content Include="Content\Images\game-of-thrones-house-flags-wallpaper-3201.jpg" />
     <Content Include="Content\Images\greyjoy.png" />
+    <Content Include="Content\Images\Icons\information.ico" />
+    <Content Include="Content\Images\Icons\trophy-512.png" />
     <Content Include="Content\Images\Jon.jpg" />
     <Content Include="Content\Images\lannister.png" />
-    <Content Include="Content\Images\objective-icon.png" />
     <Content Include="Content\Images\Stark.png" />
     <Content Include="Content\Images\targaryen.png" />
-    <Content Include="Content\Images\trophy-icon.png" />
+    <Content Include="Content\Images\Icons\trophy-icon.png" />
     <Content Include="Content\Images\tyrell.png" />
     <Content Include="Content\Images\Westeros\Dorne\red_mountains.png" />
     <Content Include="Content\Images\Westeros\Dorne\sandstone.png" />
@@ -292,7 +295,6 @@
     </Content>
     <Content Include="fonts\Gameofthrones.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\game-loop.js" />
     <Content Include="Scripts\game-play.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -351,6 +353,8 @@
     <Content Include="Views\Map\_MoveTroops.cshtml" />
     <Content Include="Views\Map\_Error.cshtml" />
     <Content Include="Views\Map\_InfoGeral.cshtml" />
+    <Content Include="Views\Map\_IA.cshtml" />
+    <Content Include="Views\Map\_Victory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
