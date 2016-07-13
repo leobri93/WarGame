@@ -10,6 +10,8 @@ namespace WarGame
         {
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+            var cssUrlRewriter = new CssRewriteUrlTransform();
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -23,9 +25,9 @@ namespace WarGame
                     "~/Scripts/westeros-map-view.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/styles").Include(
-                      "~/Content/Styles/bootstrap.css",
-                      "~/Content/Styles/site.css"));
+            bundles.Add(new StyleBundle("~/Content/styles")
+                      .Include("~/Content/Styles/bootstrap.css", cssUrlRewriter)
+                      .Include("~/Content/Styles/site.css", cssUrlRewriter));
 
         }
     }
