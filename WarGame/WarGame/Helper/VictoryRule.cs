@@ -35,9 +35,9 @@ namespace WarGame.Helper
                 
                  if (obj.VerifyFamilyOnObjective(player, players))
                  {
-                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Stark"));
+                     var regionsDominatedByobjective = regions.Where(x => x.Player.Family.Name.Equals("Stark")).Count();
 
-                     if (regionsDominatedByobjective == null)
+                     if (regionsDominatedByobjective == null || regionsDominatedByobjective == 0)
                      {
                          return true;
                      }
