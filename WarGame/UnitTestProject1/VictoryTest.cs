@@ -18,7 +18,7 @@ namespace UnitTestProject1
             //Arrange
             var mockfamily = new Mock<FamilyViewModel>();
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(8, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
             var mockPlayer2 = new Mock<PlayerViewModel>();
             var mockPlayer3 = new Mock<PlayerViewModel>();
@@ -55,7 +55,7 @@ namespace UnitTestProject1
             var mockPlayer1 = new Mock<PlayerViewModel>();
             var mockfamily = new Mock<FamilyViewModel>();
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(8, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
             var mockPlayer2 = new Mock<PlayerViewModel>();
             var mockPlayer3 = new Mock<PlayerViewModel>();
@@ -91,16 +91,16 @@ namespace UnitTestProject1
             //Test player configurations(Baratheon)
             var mockfamily = new Mock<FamilyViewModel>("Baratheon");
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(6, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
 
 
             //mockPlayers configuration (Targaryen and Stark)
             var mockfamily2 = new Mock<FamilyViewModel>("Targaryen");
             Mock<ObjectiveModel> mockObjective2 = new Mock<ObjectiveModel>(6, "abc");
-            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object);
+            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object,false);
             var mockfamily3 = new FamilyViewModel("Stark");
-            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object);
+            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object, false);
 
             //setting player's list
             List<PlayerViewModel> playersList = new List<PlayerViewModel>();
@@ -120,7 +120,6 @@ namespace UnitTestProject1
             {
                 regionList.Add(mockRegion);
             }
-                
 
             var resp = VictoryRule.regrasDeVitoria(testPlayer, regionList, playersList);
 
@@ -140,16 +139,16 @@ namespace UnitTestProject1
             //Test player configurations(Baratheon)
             var mockfamily = new Mock<FamilyViewModel>("Baratheon");
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(6, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
             
 
             //mockPlayers configuration (Targaryen and Stark)
             var mockfamily2 = new Mock<FamilyViewModel>("Targaryen");
             Mock<ObjectiveModel> mockObjective2 = new Mock<ObjectiveModel>(6, "abc");
-            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object);
+            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object, false);
             var mockfamily3 = new FamilyViewModel("Stark");
-            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object);
+            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object, false);
                         
             //setting player's list
             List<PlayerViewModel> playersList = new List<PlayerViewModel>();
@@ -191,7 +190,7 @@ namespace UnitTestProject1
             var mockPlayer3 = new Mock<PlayerViewModel>();
             var mockfamily = new Mock<FamilyViewModel>();
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(11, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
 
             List<PlayerViewModel> playersList = new List<PlayerViewModel>();
@@ -232,16 +231,16 @@ namespace UnitTestProject1
             //Test player configurations(Stark)
             var mockfamily = new Mock<FamilyViewModel>("Stark");
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(9, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
 
 
             //mockPlayers configuration (Targaryen and Baratheon)
             var mockfamily2 = new Mock<FamilyViewModel>("Targaryen");
             Mock<ObjectiveModel> mockObjective2 = new Mock<ObjectiveModel>(6, "abc");
-            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object);
+            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object, false);
             var mockfamily3 = new FamilyViewModel("Baratheon");
-            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object);
+            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object, false);
 
             //setting player's list
             List<PlayerViewModel> playersList = new List<PlayerViewModel>();
@@ -294,16 +293,16 @@ namespace UnitTestProject1
             //Test player configurations(Baratheon)
             var mockfamily = new Mock<FamilyViewModel>("Stark");
             Mock<ObjectiveModel> mockObjective = new Mock<ObjectiveModel>(9, "abc");
-            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object);
+            PlayerViewModel testPlayer = new PlayerViewModel("player1", mockfamily.Object, mockObjective.Object, true);
             testPlayer.Id = "1";
 
 
             //mockPlayers configuration (Targaryen and Stark)
             var mockfamily2 = new Mock<FamilyViewModel>("Targaryen");
             Mock<ObjectiveModel> mockObjective2 = new Mock<ObjectiveModel>(6, "abc");
-            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object);
+            var mockPlayer2 = new Mock<PlayerViewModel>("player2", mockfamily2.Object, mockObjective2.Object, false);
             var mockfamily3 = new FamilyViewModel("Baratheon");
-            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object);
+            var mockPlayer3 = new PlayerViewModel("player3", mockfamily3, mockObjective2.Object, false);
 
             //setting player's list
             List<PlayerViewModel> playersList = new List<PlayerViewModel>();
