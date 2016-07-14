@@ -1,6 +1,6 @@
 ﻿@font-face {
     font-family: Gameofthrones;
-    src: url('../../fonts/Gameofthrones.ttf');
+    src: url('/fonts/Gameofthrones.ttf');
 }
 #objective-icon, #info-icon {
     cursor:pointer;
@@ -25,7 +25,7 @@ h1.welcome-title {
     color:#fff !important;
 }
 .welcome {
-    background: url('../Images/Jon.jpg');
+    background: url('/Content/Images/Jon.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -35,7 +35,7 @@ h1.welcome-title {
 }
 
 .victoryImg{
-    background: url('../Images/game-of-thrones-crown.jpg');
+    background: url('/Content/Images/game-of-thrones-crown.jpg');
     background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -51,7 +51,7 @@ h1.welcome-title {
 }
 
 .tabuleiro {
-    background: url('../Images/game-of-thrones-house-flags-wallpaper-3201.jpg');
+    background: url('/Content/Images/game-of-thrones-house-flags-wallpaper-3201.jpg');
 	background-repeat: repeat;
 	background-position: center;
     background-size: cover;
