@@ -25,9 +25,10 @@ namespace WarGame
                     "~/Scripts/westeros-map-view.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/styles")
+            bundles.Add(new StyleBundle("~/Content/Styles/css")
                       .Include("~/Content/Styles/bootstrap.css", cssUrlRewriter)
-                      .Include("~/Content/Styles/site.css", cssUrlRewriter));
+                      .Include("~/Content/Styles/site.css", cssUrlRewriter)
+                      .Include("~/Content/Styles/bootstrap.min.css", cssUrlRewriter));
 
         }
     }
